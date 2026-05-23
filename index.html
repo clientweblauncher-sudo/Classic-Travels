@@ -1,788 +1,606 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classic Travels | Premium Taxi & Travel Services Mumbai</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Classic Travels Solutions India Pvt Ltd</title>
 
-    <style>
-        /* CSS VARIABLES */
-        :root {
-            --primary: #8b5cf6;
-            --secondary: #3b82f6;
-            --accent: #10b981;
-            --bg-dark: #0f172a;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --text-light: #f8fafc;
-            --text-muted: #94a3b8;
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --glass-bg: rgba(15, 23, 42, 0.7);
-            --gradient: linear-gradient(135deg, var(--secondary), var(--primary));
-        }
+  <meta name="description" content="Corporate Employee Transportation & Fleet Management Services in Mumbai & Pune." />
+  <meta name="keywords" content="Corporate Transport Mumbai, Employee Transportation Pune, Fleet Management, Staff Transportation" />
 
-        /* RESET & BASE STYLES */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        html {
-            scroll-behavior: smooth;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            overflow-x: hidden;
-        }
+  <style>
+    *{
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
 
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        
-        /* TYPOGRAPHY */
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 700;
-        }
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 4rem;
-        }
+    body{
+      background:#020617;
+      color:white;
+      overflow-x:hidden;
+    }
 
-        /* REUSABLE CLASSES */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        section {
-            padding: 6rem 0;
-        }
-        .glass-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .glass-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.15);
-            border-color: rgba(139, 92, 246, 0.3);
-        }
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            outline: none;
-        }
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-        }
-        .btn-primary:hover {
-            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
-            transform: translateY(-2px);
-        }
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--text-light);
-            color: var(--text-light);
-        }
-        .btn-outline:hover {
-            background: var(--text-light);
-            color: var(--bg-dark);
-        }
+    .glass{
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(14px);
+      border:1px solid rgba(255,255,255,0.1);
+    }
 
-        /* PRELOADER */
-        #preloader {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-dark);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-        .loader {
-            width: 50px; height: 50px;
-            border: 3px solid var(--glass-border);
-            border-radius: 50%;
-            border-top-color: var(--primary);
-            animation: spin 1s ease-in-out infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
+    .hero-overlay{
+      background: linear-gradient(to right, rgba(2,6,23,.95), rgba(2,6,23,.75));
+    }
 
-        /* NAVBAR */
-        nav {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            padding: 1.5rem 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        nav.scrolled {
-            padding: 1rem 0;
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass-border);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-            letter-spacing: 1px;
-        }
-        .logo span { color: var(--primary); }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-        .nav-links a {
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-            position: relative;
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px; left: 0; width: 0; height: 2px;
-            background: var(--gradient);
-            transition: width 0.3s ease;
-        }
-        .nav-links a:hover { color: var(--primary); }
-        .nav-links a:hover::after { width: 100%; }
-        
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
+    .floating{
+      animation: float 4s ease-in-out infinite;
+    }
 
-        /* HERO SECTION */
-        #home {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            background: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070') center/cover;
-        }
-        #home::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to right, rgba(15,23,42,0.9), rgba(15,23,42,0.6));
-        }
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 600px;
-        }
-        .hero-content h1 {
-            font-size: 4rem;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            animation: fadeUp 1s ease 0.2s backwards;
-        }
-        .hero-content p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            animation: fadeUp 1s ease 0.4s backwards;
-        }
-        .hero-btns {
-            display: flex;
-            gap: 1rem;
-            animation: fadeUp 1s ease 0.6s backwards;
-        }
+    @keyframes float{
+      0%{transform:translateY(0px)}
+      50%{transform:translateY(-10px)}
+      100%{transform:translateY(0px)}
+    }
 
-        /* SERVICES SECTION */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        .service-card {
-            text-align: center;
-        }
-        .service-icon {
-            font-size: 2.5rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1.5rem;
-        }
-        .service-card h3 { margin-bottom: 1rem; font-size: 1.3rem; }
-        .service-card p { color: var(--text-muted); font-size: 0.95rem; }
+    .bus-animation{
+      animation: moveBus 16s linear infinite;
+    }
 
-        /* FLEET / GALLERY */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        .gallery-item {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            height: 250px;
-            cursor: pointer;
-        }
-        .gallery-item img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .gallery-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(139, 92, 246, 0.4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .gallery-overlay i { font-size: 2rem; color: white; }
-        .gallery-item:hover img { transform: scale(1.1); }
-        .gallery-item:hover .gallery-overlay { opacity: 1; }
+    @keyframes moveBus{
+      from{
+        transform: translateX(-120%);
+      }
+      to{
+        transform: translateX(120%);
+      }
+    }
 
-        /* LIGHTBOX */
-        #lightbox {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-        #lightbox.active { display: flex; animation: fadeIn 0.3s ease; }
-        #lightbox img { max-width: 90%; max-height: 80vh; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .lightbox-close {
-            position: absolute; top: 30px; right: 40px;
-            font-size: 2rem; color: white; cursor: pointer;
-        }
+    .fadeUp{
+      opacity:0;
+      transform:translateY(50px);
+      transition:all .8s ease;
+    }
 
-        /* WHY CHOOSE US (COUNTERS) */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-        .stat-item h2 {
-            font-size: 3rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-        .stat-item p { font-weight: 500; letter-spacing: 1px; text-transform: uppercase; font-size: 0.85rem; color: var(--text-muted); }
+    .fadeUp.show{
+      opacity:1;
+      transform:translateY(0);
+    }
 
-        /* REVIEWS / TESTIMONIALS */
-        .slider-container {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            overflow: hidden;
-            padding: 2rem 0;
-        }
-        .slider {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .slide {
-            min-width: 100%;
-            padding: 0 1rem;
-            text-align: center;
-        }
-        .slide p {
-            font-size: 1.1rem;
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-        .slide h4 { color: var(--primary); }
-        .slider-dots {
-            display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem;
-        }
-        .dot {
-            width: 10px; height: 10px; border-radius: 50%;
-            background: var(--glass-border); cursor: pointer; transition: 0.3s;
-        }
-        .dot.active { background: var(--primary); }
+    .gradient-text{
+      background: linear-gradient(to right,#60a5fa,#ffffff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
 
-        /* CONTACT SECTION */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            color: white;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-        .contact-form input:focus, .contact-form textarea:focus { border-color: var(--primary); }
-        .contact-form textarea { resize: vertical; height: 150px; }
-        
-        .contact-info .info-item {
-            display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;
-        }
-        .info-item i { font-size: 1.5rem; color: var(--primary); margin-top: 5px; }
-        .map-container {
-            width: 100%; height: 250px; border-radius: 12px; overflow: hidden; margin-top: 2rem;
-            border: 1px solid var(--glass-border);
-        }
+    .navBlur{
+      background: rgba(2,6,23,0.85);
+      backdrop-filter: blur(10px);
+    }
 
-        /* FOOTER */
-        footer {
-            background: rgba(0,0,0,0.5);
-            padding: 3rem 0 1.5rem;
-            border-top: 1px solid var(--glass-border);
-        }
-        .footer-content { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
-        .socials { display: flex; gap: 1rem; }
-        .socials a {
-            display: flex; justify-content: center; align-items: center;
-            width: 40px; height: 40px; border-radius: 50%;
-            background: var(--glass-border); transition: 0.3s;
-        }
-        .socials a:hover { background: var(--primary); transform: translateY(-3px); }
-        .copyright { text-align: center; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--glass-border); padding-top: 1.5rem; }
-
-        /* FLOATING ACTION BUTTONS */
-        .fab-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 100; }
-        .fab {
-            width: 50px; height: 50px; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            color: white; font-size: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s;
-            cursor: pointer;
-        }
-        .fab-wa { background: #25D366; }
-        .fab-wa:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
-        .fab-up { background: var(--bg-card); backdrop-filter: blur(5px); border: 1px solid var(--glass-border); opacity: 0; pointer-events: none; }
-        .fab-up.visible { opacity: 1; pointer-events: auto; }
-        .fab-up:hover { background: var(--primary); }
-
-        /* ANIMATIONS (SCROLL REVEAL) */
-        .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* RESPONSIVE DESIGN */
-        @media(max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .contact-grid { grid-template-columns: 1fr; }
-            .hamburger { display: block; }
-            .nav-links {
-                position: absolute; top: 100%; left: 0; width: 100%;
-                background: var(--bg-dark); flex-direction: column; gap: 0;
-                padding: 0; max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
-            }
-            .nav-links.active { max-height: 400px; border-bottom: 1px solid var(--glass-border); }
-            .nav-links a { display: block; padding: 1.5rem 2rem; border-top: 1px solid var(--glass-border); }
-            .footer-content { flex-direction: column; gap: 2rem; text-align: center; }
-        }
-    </style>
+  </style>
 </head>
+
 <body>
 
-    <div id="preloader">
-        <div class="loader"></div>
+<!-- NAVBAR -->
+
+<nav class="fixed top-0 left-0 w-full z-50 navBlur border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+    <div>
+      <h1 class="text-2xl font-bold gradient-text">
+        CLASSIC TRAVELS
+      </h1>
     </div>
 
-    <nav id="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">Classic<span>Travels</span></a>
-            <div class="hamburger"><i class="fas fa-bars"></i></div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#fleet">Our Fleet</a></li>
-                <li><a href="#about">Why Us</a></li>
-                <li><a href="#reviews">Reviews</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <section id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Premium Travel Services in Mumbai</h1>
-                <p>Experience luxury, comfort, and reliability with Classic Travels. Your premier choice for local and outstation taxi services in Powai and across Mumbai.</p>
-                <div class="hero-btns">
-                    <a href="#contact" class="btn btn-primary">Book Now</a>
-                    <a href="tel:+919702777737" class="btn btn-outline">Call Us</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="services">
-        <div class="container">
-            <h2 class="section-title reveal">Our Expertise</h2>
-            <p class="section-subtitle reveal">Tailored travel solutions for your every need</p>
-            
-            <div class="services-grid">
-                <div class="glass-card service-card reveal">
-                    <i class="fas fa-map-marker-alt service-icon"></i>
-                    <h3>Local City Tours</h3>
-                    <p>Discover the vibrant city of Mumbai with our experienced local drivers who know every shortcut and landmark.</p>
-                </div>
-                <div class="glass-card service-card reveal" style="transition-delay: 0.1s;">
-                    <i class="fas fa-road service-icon"></i>
-                    <h3>Outstation Trips</h3>
-                    <p>Comfortable sedans and SUVs for your weekend getaways to Lonavala, Pune, Mahabaleshwar, and beyond.</p>
-                </div>
-                <div class="glass-card service-card reveal" style="transition-delay: 0.2s;">
-                    <i class="fas fa-plane-arrival service-icon"></i>
-                    <h3>Airport Transfers</h3>
-                    <p>Punctual pickup and drop-off services to Chhatrapati Shivaji Maharaj International Airport. Never miss a flight.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="fleet" style="background: rgba(255,255,255,0.01);">
-        <div class="container">
-            <h2 class="section-title reveal">Premium Fleet</h2>
-            <p class="section-subtitle reveal">Travel in style and absolute comfort</p>
-            
-            <div class="gallery-grid">
-                <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)">
-                    <img src="https://images.unsplash.com/photo-1549315488-662551a3fb33?q=80&w=800" alt="Luxury Sedan">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="gallery-item reveal" style="transition-delay: 0.1s;" onclick="openLightbox(this.querySelector('img').src)">
-                    <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=800" alt="Premium SUV">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="gallery-item reveal" style="transition-delay: 0.2s;" onclick="openLightbox(this.querySelector('img').src)">
-                    <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=800" alt="Executive Car">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="gallery-item reveal" onclick="openLightbox(this.querySelector('img').src)">
-                    <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=800" alt="Comfort Taxi">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="gallery-item reveal" style="transition-delay: 0.1s;" onclick="openLightbox(this.querySelector('img').src)">
-                    <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=800" alt="Business Travel">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-                <div class="gallery-item reveal" style="transition-delay: 0.2s;" onclick="openLightbox(this.querySelector('img').src)">
-                    <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?q=80&w=800" alt="Luxury Interior">
-                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div id="lightbox" onclick="closeLightbox(event)">
-        <i class="fas fa-times lightbox-close"></i>
-        <img id="lightbox-img" src="" alt="Fleet Fullscreen">
+    <div class="hidden md:flex gap-8 text-sm">
+      <a href="#about" class="hover:text-blue-400">About</a>
+      <a href="#services" class="hover:text-blue-400">Services</a>
+      <a href="#fleet" class="hover:text-blue-400">Fleet</a>
+      <a href="#clients" class="hover:text-blue-400">Clients</a>
+      <a href="#contact" class="hover:text-blue-400">Contact</a>
     </div>
 
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title reveal">Why Choose Us</h2>
-            <p class="section-subtitle reveal">Numbers that speak for our dedication</p>
+  </div>
+</nav>
 
-            <div class="glass-card reveal">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <i class="fas fa-route service-icon" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                        <h2 class="counter" data-target="1500">0</h2>
-                        <p>Trips Completed</p>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-users service-icon" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                        <h2 class="counter" data-target="850">0</h2>
-                        <p>Happy Clients</p>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-car service-icon" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                        <h2 class="counter" data-target="45">0</h2>
-                        <p>Premium Vehicles</p>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-star service-icon" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                        <h2 class="counter" data-target="10">0</h2>
-                        <p>Years Experience</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- HERO SECTION -->
 
-    <section id="reviews" style="background: rgba(255,255,255,0.01);">
-        <div class="container">
-            <h2 class="section-title reveal">Client Testimonials</h2>
-            <p class="section-subtitle reveal">What our passengers say about us</p>
+<section class="relative min-h-screen flex items-center overflow-hidden">
 
-            <div class="glass-card reveal slider-container">
-                <div class="slider" id="slider">
-                    <div class="slide">
-                        <i class="fas fa-quote-left" style="font-size: 2rem; color: var(--glass-border); margin-bottom: 1rem;"></i>
-                        <p>"Absolutely fantastic service! Booked an Innova for a family trip to Lonavala. The car was spotless, and the driver was highly professional. Highly recommended!"</p>
-                        <h4>- Rahul Sharma</h4>
-                        <span style="color: var(--accent);"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                    </div>
-                    <div class="slide">
-                        <i class="fas fa-quote-left" style="font-size: 2rem; color: var(--glass-border); margin-bottom: 1rem;"></i>
-                        <p>"My go-to service for early morning airport drops from Powai. They are always 10 minutes early. Zero stress travel."</p>
-                        <h4>- Priya Desai</h4>
-                        <span style="color: var(--accent);"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                    </div>
-                    <div class="slide">
-                        <i class="fas fa-quote-left" style="font-size: 2rem; color: var(--glass-border); margin-bottom: 1rem;"></i>
-                        <p>"We use Classic Travels for our corporate guests. The premium sedans and courteous chauffeurs leave a great impression every time."</p>
-                        <h4>- Amit Mehta</h4>
-                        <span style="color: var(--accent);"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
-                    </div>
-                </div>
-                <div class="slider-dots" id="slider-dots"></div>
-            </div>
-        </div>
-    </section>
+  <img
+    src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2070&auto=format&fit=crop"
+    class="absolute inset-0 w-full h-full object-cover"
+  />
 
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title reveal">Get In Touch</h2>
-            <p class="section-subtitle reveal">Book your ride or ask us a query</p>
+  <div class="absolute inset-0 hero-overlay"></div>
 
-            <div class="contact-grid">
-                <div class="glass-card reveal">
-                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent successfully! We will contact you soon.');">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="tel" placeholder="Phone Number (e.g., +91...)" required>
-                        <textarea placeholder="Tell us about your trip (Date, Destination, Passengers)" required></textarea>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Request</button>
-                    </form>
-                </div>
+  <!-- Moving buses -->
 
-                <div class="glass-card reveal" style="transition-delay: 0.2s;">
-                    <div class="contact-info">
-                        <div class="info-item">
-                            <i class="fas fa-location-dot"></i>
-                            <div>
-                                <h4>Visit Us</h4>
-                                <p style="color: var(--text-muted); font-size: 0.9rem;">Hiranandani Gardens, Powai, Mumbai, Maharashtra 400076</p>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-phone-alt"></i>
-                            <div>
-                                <h4>Call Us</h4>
-                                <p style="color: var(--text-muted); font-size: 0.9rem;">+91 97027 77737</p>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4>Email Us</h4>
-                                <p style="color: var(--text-muted); font-size: 0.9rem;">bookings@classictravels.in</p>
-                            </div>
-                        </div>
-                    </div>
+  <div class="absolute bottom-10 left-0 w-full overflow-hidden opacity-90">
+    <div class="bus-animation flex gap-8 items-center whitespace-nowrap">
 
-                    <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15078.361596489314!2d72.8988358204683!3d19.1255551322049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c7f1a3b118fb%3A0xc47e337199c04d16!2sPowai%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1699999999999!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      <img src="https://cdn-icons-png.flaticon.com/512/61/61231.png" class="w-28 invert" />
+      <img src="https://cdn-icons-png.flaticon.com/512/61/61231.png" class="w-28 invert" />
+      <img src="https://cdn-icons-png.flaticon.com/512/61/61231.png" class="w-28 invert" />
+      <img src="https://cdn-icons-png.flaticon.com/512/61/61231.png" class="w-28 invert" />
+      <img src="https://cdn-icons-png.flaticon.com/512/61/61231.png" class="w-28 invert" />
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <a href="#" class="logo">Classic<span>Travels</span></a>
-                <div class="socials">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="https://wa.me/919702777737" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-            <p class="copyright">&copy; 2026 Classic Travels Mumbai. All Rights Reserved.</p>
-        </div>
-    </footer>
+    </div>
+  </div>
 
-    <div class="fab-container">
-        <a href="#" class="fab fab-up" id="backToTop" title="Back to top">
-            <i class="fas fa-chevron-up"></i>
+  <div class="relative z-10 max-w-7xl mx-auto px-6 py-32">
+
+    <div class="max-w-3xl">
+
+      <p class="uppercase tracking-[4px] text-blue-400 mb-4">
+        Since 2012
+      </p>
+
+      <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
+        Corporate Transportation
+        <span class="gradient-text">
+          Solutions
+        </span>
+      </h1>
+
+      <p class="text-lg text-gray-300 leading-relaxed mb-8">
+        Premium employee transportation and fleet management solutions across Mumbai & Pune with reliable operations, professional drivers and modern vehicles.
+      </p>
+
+      <div class="flex flex-wrap gap-4">
+
+        <a href="#contact" class="bg-blue-600 hover:bg-blue-700 transition px-8 py-4 rounded-full font-semibold">
+          Get Quote
         </a>
-        <a href="https://wa.me/919702777737" target="_blank" class="fab fab-wa" title="Chat on WhatsApp">
-            <i class="fab fa-whatsapp"></i>
+
+        <a href="#fleet" class="border border-white/20 hover:bg-white hover:text-black transition px-8 py-4 rounded-full font-semibold">
+          Explore Fleet
         </a>
+
+      </div>
+
     </div>
 
-    <script>
-        // Preloader
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            preloader.style.opacity = '0';
-            setTimeout(() => preloader.style.display = 'none', 500);
-        });
+    <!-- Stats -->
 
-        // Navbar & Back to Top Scroll Logic
-        const navbar = document.getElementById('navbar');
-        const backToTop = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-                backToTop.classList.add('visible');
-            } else {
-                navbar.classList.remove('scrolled');
-                backToTop.classList.remove('visible');
-            }
-        });
+    <div class="grid md:grid-cols-4 gap-6 mt-20">
 
-        // Mobile Menu Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-        
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
+      <div class="glass rounded-3xl p-6 floating">
+        <h2 class="text-4xl font-bold text-blue-400">14+</h2>
+        <p class="text-gray-300 mt-2">Years Experience</p>
+      </div>
 
-        // Scroll Reveal Animation via IntersectionObserver
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    revealObserver.unobserve(entry.target); // Reveal only once
-                }
-            });
-        }, { threshold: 0.15 });
+      <div class="glass rounded-3xl p-6 floating">
+        <h2 class="text-4xl font-bold text-blue-400">70+</h2>
+        <p class="text-gray-300 mt-2">Fleet Vehicles</p>
+      </div>
 
-        revealElements.forEach(el => revealObserver.observe(el));
+      <div class="glass rounded-3xl p-6 floating">
+        <h2 class="text-4xl font-bold text-blue-400">24/7</h2>
+        <p class="text-gray-300 mt-2">Operations</p>
+      </div>
 
-        // Animated Counters
-        const counters = document.querySelectorAll('.counter');
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const counter = entry.target;
-                    const target = +counter.getAttribute('data-target');
-                    const duration = 2000; // 2 seconds
-                    const increment = target / (duration / 16); // 60fps
-                    
-                    let current = 0;
-                    const updateCounter = () => {
-                        current += increment;
-                        if (current < target) {
-                            counter.innerText = Math.ceil(current);
-                            requestAnimationFrame(updateCounter);
-                        } else {
-                            counter.innerText = target + "+";
-                        }
-                    };
-                    updateCounter();
-                    counterObserver.unobserve(counter);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        counters.forEach(counter => counterObserver.observe(counter));
+      <div class="glass rounded-3xl p-6 floating">
+        <h2 class="text-4xl font-bold text-blue-400">Mumbai</h2>
+        <p class="text-gray-300 mt-2">& Pune Service</p>
+      </div>
 
-        // Lightbox Logic
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        
-        window.openLightbox = function(src) {
-            lightboxImg.src = src;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Stop scrolling
-        }
-        
-        window.closeLightbox = function(e) {
-            if (e.target !== lightboxImg) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = 'auto'; // Enable scrolling
-            }
-        }
+    </div>
 
-        // Testimonial Slider
-        const slider = document.getElementById('slider');
-        const slides = document.querySelectorAll('.slide');
-        const dotsContainer = document.getElementById('slider-dots');
-        let currentSlide = 0;
+  </div>
 
-        // Create dots
-        slides.forEach((_, i) => {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToSlide(i));
-            dotsContainer.appendChild(dot);
-        });
+</section>
 
-        const dots = document.querySelectorAll('.dot');
+<!-- ABOUT -->
 
-        function goToSlide(index) {
-            currentSlide = index;
-            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots[currentSlide].classList.add('active');
-        }
+<section id="about" class="py-28">
 
-        // Auto slide
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % slides.length;
-            goToSlide(currentSlide);
-        }, 5000);
+  <div class="max-w-7xl mx-auto px-6">
 
-    </script>
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+
+      <div class="fadeUp">
+
+        <p class="text-blue-400 uppercase tracking-[4px] mb-4">
+          About Company
+        </p>
+
+        <h2 class="text-5xl font-bold mb-8">
+          Trusted Corporate Transportation Partner
+        </h2>
+
+        <p class="text-gray-400 leading-relaxed mb-6">
+          Established in 2012, Classic Travels Solutions India Pvt Ltd is one of the growing transportation service providers in Mumbai & Pune.
+        </p>
+
+        <p class="text-gray-400 leading-relaxed mb-6">
+          We specialize in employee transportation, fleet management, corporate travel and staff mobility solutions with a strong focus on punctuality, safety and operational excellence.
+        </p>
+
+        <div class="space-y-4 mt-8">
+
+          <div class="glass p-5 rounded-2xl">
+            <h3 class="font-semibold text-xl">2012</h3>
+            <p class="text-gray-400 mt-2">
+              Started as a partnership firm under CLASSIC TRAVELS
+            </p>
+          </div>
+
+          <div class="glass p-5 rounded-2xl">
+            <h3 class="font-semibold text-xl">2021</h3>
+            <p class="text-gray-400 mt-2">
+              Converted into Classic Travels Solutions India Pvt Ltd
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="fadeUp">
+        <img
+          src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=1974&auto=format&fit=crop"
+          class="rounded-3xl shadow-2xl"
+        />
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SERVICES -->
+
+<section id="services" class="py-28 bg-slate-950">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-20 fadeUp">
+
+      <p class="text-blue-400 uppercase tracking-[4px] mb-4">
+        Services
+      </p>
+
+      <h2 class="text-5xl font-bold">
+        Premium Transportation Services
+      </h2>
+
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-6">
+
+      <div class="glass rounded-3xl p-8 hover:scale-105 transition fadeUp">
+        <div class="text-5xl mb-5">🚐</div>
+        <h3 class="text-2xl font-semibold mb-4">Employee Transport</h3>
+        <p class="text-gray-400">
+          Reliable corporate employee pickup and drop transportation.
+        </p>
+      </div>
+
+      <div class="glass rounded-3xl p-8 hover:scale-105 transition fadeUp">
+        <div class="text-5xl mb-5">📍</div>
+        <h3 class="text-2xl font-semibold mb-4">Fleet Management</h3>
+        <p class="text-gray-400">
+          Professional vehicle allocation and route planning solutions.
+        </p>
+      </div>
+
+      <div class="glass rounded-3xl p-8 hover:scale-105 transition fadeUp">
+        <div class="text-5xl mb-5">✈️</div>
+        <h3 class="text-2xl font-semibold mb-4">Airport Transfer</h3>
+        <p class="text-gray-400">
+          Luxury airport transportation for executives and staff.
+        </p>
+      </div>
+
+      <div class="glass rounded-3xl p-8 hover:scale-105 transition fadeUp">
+        <div class="text-5xl mb-5">📊</div>
+        <h3 class="text-2xl font-semibold mb-4">MIS Reporting</h3>
+        <p class="text-gray-400">
+          Complete operational reporting and movement monitoring.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FLEET -->
+
+<section id="fleet" class="py-28">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-20 fadeUp">
+
+      <p class="text-blue-400 uppercase tracking-[4px] mb-4">
+        Fleet
+      </p>
+
+      <h2 class="text-5xl font-bold">
+        Our Premium Fleet
+      </h2>
+
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <div class="glass rounded-3xl overflow-hidden fadeUp">
+        <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?q=80&w=1932&auto=format&fit=crop" class="h-64 w-full object-cover"/>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold mb-2">Ertiga</h3>
+          <p class="text-gray-400">Premium corporate staff transportation vehicle.</p>
+        </div>
+      </div>
+
+      <div class="glass rounded-3xl overflow-hidden fadeUp">
+        <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2070&auto=format&fit=crop" class="h-64 w-full object-cover"/>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold mb-2">Dzire</h3>
+          <p class="text-gray-400">Comfortable sedan solutions for executives.</p>
+        </div>
+      </div>
+
+      <div class="glass rounded-3xl overflow-hidden fadeUp">
+        <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=2072&auto=format&fit=crop" class="h-64 w-full object-cover"/>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold mb-2">SUV & Staff Vehicles</h3>
+          <p class="text-gray-400">Reliable fleet for high-volume transportation.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CLIENTS -->
+
+<section id="clients" class="py-28 bg-slate-950">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-20 fadeUp">
+
+      <p class="text-blue-400 uppercase tracking-[4px] mb-4">
+        Trusted By
+      </p>
+
+      <h2 class="text-5xl font-bold">
+        Our Corporate Clients
+      </h2>
+
+    </div>
+
+    <div class="grid md:grid-cols-5 gap-6">
+
+      <div class="glass rounded-2xl p-8 text-center font-semibold text-lg">
+        TCS
+      </div>
+
+      <div class="glass rounded-2xl p-8 text-center font-semibold text-lg">
+        IKEA
+      </div>
+
+      <div class="glass rounded-2xl p-8 text-center font-semibold text-lg">
+        GODREJ
+      </div>
+
+      <div class="glass rounded-2xl p-8 text-center font-semibold text-lg">
+        TIAA
+      </div>
+
+      <div class="glass rounded-2xl p-8 text-center font-semibold text-lg">
+        TRAFIGURA
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- WHY US -->
+
+<section class="py-28">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-20 fadeUp">
+
+      <p class="text-blue-400 uppercase tracking-[4px] mb-4">
+        Why Choose Us
+      </p>
+
+      <h2 class="text-5xl font-bold">
+        Reliable & Professional Operations
+      </h2>
+
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-6">
+
+      <div class="glass rounded-3xl p-8 fadeUp">
+        <div class="text-5xl mb-5">📡</div>
+        <h3 class="text-xl font-semibold">GPS Tracking</h3>
+      </div>
+
+      <div class="glass rounded-3xl p-8 fadeUp">
+        <div class="text-5xl mb-5">⏰</div>
+        <h3 class="text-xl font-semibold">On-Time Pickup</h3>
+      </div>
+
+      <div class="glass rounded-3xl p-8 fadeUp">
+        <div class="text-5xl mb-5">🛡️</div>
+        <h3 class="text-xl font-semibold">Safety Compliance</h3>
+      </div>
+
+      <div class="glass rounded-3xl p-8 fadeUp">
+        <div class="text-5xl mb-5">📞</div>
+        <h3 class="text-xl font-semibold">24/7 Support</h3>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact" class="py-28 bg-slate-950">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="grid md:grid-cols-2 gap-16">
+
+      <div class="fadeUp">
+
+        <p class="text-blue-400 uppercase tracking-[4px] mb-4">
+          Contact
+        </p>
+
+        <h2 class="text-5xl font-bold mb-8">
+          Let's Work Together
+        </h2>
+
+        <div class="space-y-6 text-gray-300">
+
+          <div class="glass rounded-2xl p-6">
+            <h3 class="font-semibold text-xl mb-3">Office Address</h3>
+            <p>
+              Shop No. 5, Om Siddhivinayak CHS Ltd,<br>
+              Plot No. D-1/D-1A, Sec 9,<br>
+              Airoli, Navi Mumbai - 400708
+            </p>
+          </div>
+
+          <div class="glass rounded-2xl p-6">
+            <h3 class="font-semibold text-xl mb-3">Contact Numbers</h3>
+
+            <p>7387496086</p>
+            <p>7709355903</p>
+            <p>8097651124</p>
+
+          </div>
+
+          <div class="glass rounded-2xl p-6">
+            <h3 class="font-semibold text-xl mb-3">Email</h3>
+            <p>mumbaiops@classic-travels.com</p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- FORM -->
+
+      <div class="glass rounded-3xl p-10 fadeUp">
+
+        <h3 class="text-3xl font-bold mb-8">
+          Request A Quote
+        </h3>
+
+        <form class="space-y-6">
+
+          <input
+            type="text"
+            placeholder="Your Name"
+            class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none"
+          />
+
+          <input
+            type="email"
+            placeholder="Email Address"
+            class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none"
+          />
+
+          <input
+            type="text"
+            placeholder="Phone Number"
+            class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none"
+          />
+
+          <textarea
+            rows="5"
+            placeholder="Your Requirement"
+            class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none"
+          ></textarea>
+
+          <button
+            class="w-full bg-blue-600 hover:bg-blue-700 transition rounded-xl py-4 font-semibold"
+          >
+            Send Inquiry
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="border-t border-white/10 py-10">
+
+  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+
+    <div>
+      <h2 class="text-2xl font-bold gradient-text">
+        CLASSIC TRAVELS
+      </h2>
+      <p class="text-gray-400 mt-2">
+        Corporate Transportation Solutions Since 2012
+      </p>
+    </div>
+
+    <div class="text-gray-400 text-sm">
+      © 2026 Classic Travels Solutions India Pvt Ltd. All Rights Reserved.
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- WHATSAPP BUTTON -->
+
+<a
+  href="https://wa.me/917387496086"
+  target="_blank"
+  class="fixed bottom-6 right-6 bg-green-500 hover:scale-110 transition z-50 w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-2xl"
+>
+  💬
+</a>
+
+<!-- SCROLL ANIMATION -->
+
+<script>
+
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach((entry)=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add("show")
+      }
+    })
+  })
+
+  document.querySelectorAll(".fadeUp").forEach((el)=>{
+    observer.observe(el)
+  })
+
+</script>
+
 </body>
 </html>
