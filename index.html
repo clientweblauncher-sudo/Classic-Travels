@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+html_code = """<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -20,24 +20,24 @@
                     colors: {
                         corporateBlue: '#1D4ED8',
                         corporateHover: '#1E40AF',
-                        premiumDark: '#0B1121',
-                        premiumGray: '#F8FAFC',
+                        premiumDark: '#000000',
+                        pureWhite: '#FFFFFF'
                     },
                     fontFamily: {
                         poppins: ['Poppins', 'sans-serif'],
                     },
                     animation: {
-                        'scroll': 'scroll 25s linear infinite',
+                        'marquee-loop': 'marquee-loop 30s linear infinite',
                         'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
-                        scroll: {
-                            '0%': { transform: 'translateX(0)' },
+                        'marquee-loop': {
+                            '0%': { transform: 'translateX(0%)' },
                             '100%': { transform: 'translateX(-50%)' },
                         },
                         'pulse-glow': {
                             '0%, 100%': { opacity: 1, transform: 'scale(1)' },
-                            '50%': { opacity: .7, transform: 'scale(1.05)' },
+                            '50%': { opacity: .6, transform: 'scale(1.03)' },
                         }
                     }
                 }
@@ -53,147 +53,196 @@
             overflow-x: hidden;
         }
 
-        /* Services & General Premium Cards */
-        .service-card {
+        /* Pure White Layout Override */
+        section {
+            background-color: #FFFFFF !important;
+        }
+
+        /* Premium Highlighted Heading Typography Style */
+        .heading-gradient {
+            background: linear-gradient(135deg, #0F172A 30%, #1D4ED8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Dynamic Animated Hover Effects for Cards & Icons */
+        .interactive-card {
             background: #FFFFFF;
             border: 1px solid #E2E8F0;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .service-card:hover {
+        .interactive-card:hover {
             transform: translateY(-8px);
             border-color: #1D4ED8;
-            box-shadow: 0 20px 40px -5px rgba(29, 78, 216, 0.15), 0 10px 20px -5px rgba(29, 78, 216, 0.1);
+            box-shadow: 0 20px 40px -10px rgba(29, 78, 216, 0.12);
+        }
+        .interactive-card:hover .animated-icon {
+            transform: scale(1.2) rotate(6deg);
+            color: #1D4ED8;
+            background-color: #EFF6FF;
+        }
+        .animated-icon {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Fleet Technical Cards */
-        .spec-card {
-            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-            border: 1px solid #e2e8f0;
-            border-top: 4px solid #1D4ED8;
-            transition: all 0.3s ease;
+        /* Blockchain Ledger Pipeline Elements */
+        .blockchain-track {
+            position: relative;
         }
-        .spec-card:hover {
-            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
-            transform: scale(1.02);
-        }
-
-        /* Blockchain Timeline Specifics */
-        .blockchain-container::before {
+        .blockchain-track::before {
             content: '';
             position: absolute;
-            top: 50%;
+            top: 40px;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, rgba(29,78,216,0.1) 0%, rgba(29,78,216,1) 50%, rgba(29,78,216,0.1) 100%);
+            height: 4px;
+            background: linear-gradient(90deg, #1D4ED8 0%, #3B82F6 50%, #E2E8F0 100%);
             z-index: 0;
-            transform: translateY(-50%);
         }
         @media (max-width: 768px) {
-            .blockchain-container::before {
-                top: 0; bottom: 0; left: 24px; right: auto; width: 3px; height: 100%;
-                transform: none;
+            .blockchain-track::before {
+                top: 0; bottom: 0; left: 28px; right: auto; width: 4px; height: 100%;
             }
         }
+        .blockchain-node {
+            background: #FFFFFF;
+            border: 2px solid #E2E8F0;
+            transition: all 0.4s ease;
+        }
+        .blockchain-node:hover {
+            border-color: #1D4ED8;
+            box-shadow: 0 0 20px rgba(29, 78, 216, 0.25);
+        }
 
-        /* WhatsApp Button Wave */
-        @keyframes wave {
-            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+        /* WhatsApp Pulse Effect Rules */
+        @keyframes custom-wave {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
             70% { box-shadow: 0 0 0 20px rgba(34, 197, 94, 0); }
             100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
         }
-        .wa-btn { animation: wave 2s infinite; }
+        .pulse-wa { animation: custom-wave 2s infinite; }
 
-        /* Scroll Reveal */
+        /* Scroll Elements Reveal Utilities */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-        /* Marquee Track */
-        .marquee-track {
+        /* Marquee Continuous Pipeline Configuration */
+        .marquee-container {
             display: flex;
-            width: 200%;
+            overflow: hidden;
+            user-select: none;
         }
+        .marquee-content {
+            display: flex;
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: space-around;
+            min-width: 100%;
+        }
+
+        /* Animated Menu Hamburger Toggle to Close 'X' Symbol Setup */
+        .menu-bar {
+            transition: all 0.3s ease;
+        }
+        .menu-open .bar-1 { transform: rotate(45deg) translate(6px, 6px); }
+        .menu-open .bar-2 { opacity: 0; }
+        .menu-open .bar-3 { transform: rotate(-45deg) translate(6px, -7px); }
     </style>
 </head>
-<body class="antialiased selection:bg-corporateBlue selection:text-white">
+<body class="antialiased select-none bg-white">
 
-    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-slate-100 py-4">
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-black border-b border-zinc-900 py-4 text-white">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
             <a href="#" class="flex items-center">
-                <img src="./image/logo.png" alt="Classic Travels" class="h-12 w-auto object-contain">
+                <img src="./image/logo.png" alt="Classic Travels Logo" class="h-10 w-auto object-contain">
             </a>
 
-            <div class="hidden lg:flex items-center space-x-8 font-semibold text-sm text-slate-700">
+            <div class="hidden lg:flex items-center space-x-8 font-semibold text-sm">
                 <a href="#home" class="hover:text-corporateBlue transition-colors">Home</a>
                 <a href="#about" class="hover:text-corporateBlue transition-colors">About</a>
                 <a href="#services" class="hover:text-corporateBlue transition-colors">Services</a>
                 <a href="#fleet" class="hover:text-corporateBlue transition-colors">Fleet</a>
                 <a href="#whychoose" class="hover:text-corporateBlue transition-colors">Why Choose Us</a>
                 <a href="#process" class="hover:text-corporateBlue transition-colors">Process</a>
-                <a href="#contact" class="bg-corporateBlue hover:bg-corporateHover text-white px-6 py-2.5 rounded-lg transition-all shadow-lg shadow-blue-500/30">Get Quote</a>
+                <a href="#contact" class="bg-corporateBlue hover:bg-corporateHover text-white px-6 py-2.5 rounded-lg transition-all shadow-md shadow-blue-500/20">Get Quote</a>
             </div>
 
-            <button id="menu-toggle" class="lg:hidden text-slate-800 text-2xl focus:outline-none">
-                <i class="fa-solid fa-bars-staggered"></i>
+            <button id="menu-toggle-btn" class="lg:hidden flex flex-col justify-between w-6 h-5 focus:outline-none z-50">
+                <span class="menu-bar bar-1 w-full h-0.5 bg-white rounded"></span>
+                <span class="menu-bar bar-2 w-full h-0.5 bg-white rounded"></span>
+                <span class="menu-bar bar-3 w-full h-0.5 bg-white rounded"></span>
             </button>
         </div>
 
-        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 flex flex-col p-6 space-y-4 shadow-xl font-medium text-slate-800">
-            <a href="#home" class="mobile-link py-2 border-b border-slate-50">Home</a>
-            <a href="#about" class="mobile-link py-2 border-b border-slate-50">About</a>
-            <a href="#services" class="mobile-link py-2 border-b border-slate-50">Services</a>
-            <a href="#fleet" class="mobile-link py-2 border-b border-slate-50">Fleet</a>
-            <a href="#whychoose" class="mobile-link py-2 border-b border-slate-50">Why Choose Us</a>
-            <a href="#process" class="mobile-link py-2 border-b border-slate-50">Process</a>
-            <a href="#contact" class="mobile-link bg-corporateBlue text-white text-center py-3 rounded-lg">Get Quote</a>
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 hidden z-40 transition-opacity duration-300"></div>
+        <div id="side-drawer" class="fixed top-0 right-0 h-full w-72 bg-black border-l border-zinc-900 z-40 p-8 flex flex-col space-y-6 pt-24 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out font-medium text-lg">
+            <a href="#home" class="drawer-link hover:text-corporateBlue transition-colors border-b border-zinc-900 pb-3">Home</a>
+            <a href="#about" class="drawer-link hover:text-corporateBlue transition-colors border-b border-zinc-900 pb-3">About</a>
+            <a href="#services" class="drawer-link hover:text-corporateBlue transition-colors border-b border-zinc-900 pb-3">Services</a>
+            <a href="#fleet" class="drawer-link hover:text-corporateBlue transition-colors border-b border-zinc-900 pb-3">Fleet</a>
+            <a href="#whychoose" class="drawer-link hover:text-corporateBlue transition-colors border-b border-zinc-900 pb-3">Why Choose Us</a>
+            <a href="#process" class="drawer-link hover:text-corporateBlue transition-colors border-b border-zinc-900 pb-3">Process</a>
+            <a href="#contact" class="drawer-link bg-corporateBlue text-white text-center py-3 rounded-lg font-semibold shadow-lg">Get Quote</a>
         </div>
     </nav>
 
-    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-32">
-        <video autoplay muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
-            <source src="./image/bannervideo.mp4" type="video/mp4">
-        </video>
-        <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-slate-900/80 z-10"></div>
+    <section id="home" class="relative min-h-screen flex flex-col md:flex-row items-center justify-center overflow-hidden pt-16 bg-white">
+        <div class="absolute inset-0 w-full h-full z-0 hidden md:block">
+            <video id="hero-vid-desktop" autoplay muted playsinline class="w-full h-full object-cover">
+                <source src="./image/bannervideo.mp4" type="video/mp4">
+            </video>
+        </div>
 
-        <div class="relative z-20 max-w-7xl mx-auto px-6 lg:px-8 w-full text-white pt-10">
+        <div class="w-full aspect-video z-0 md:hidden relative">
+            <video id="hero-vid-mobile" autoplay muted playsinline class="w-full h-full object-cover">
+                <source src="./image/bannervideo.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10 pointer-events-none"></div>
+
+        <div class="relative z-20 max-w-7xl mx-auto px-6 lg:px-8 w-full text-white pt-8 md:pt-0 mb-12 md:mb-0">
             <div class="max-w-3xl">
                 <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-sm font-semibold mb-6 backdrop-blur-sm reveal">
                     <i class="fa-solid fa-shield-halved"></i> ISO Compliant Fleet Ecosystem
                 </span>
-                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight reveal delay-100">
+                <h1 class="text-3xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight reveal delay-100">
                     Corporate Transportation Solutions Since 2012
                 </h1>
-                <p class="text-lg md:text-xl text-slate-300 mb-10 font-light leading-relaxed reveal delay-200">
+                <p class="text-sm md:text-xl text-slate-300 mb-8 font-light leading-relaxed reveal delay-200">
                     Premium Employee Transportation & Fleet Management services trusted across Mumbai & Pune. Optimizing workforce mobility with pristine safety metrics.
                 </p>
                 <div class="flex flex-wrap gap-4 reveal delay-300">
-                    <a href="#contact" class="px-8 py-4 bg-corporateBlue hover:bg-corporateHover text-white font-semibold rounded-xl transition-all shadow-lg shadow-blue-600/30 flex items-center gap-2">
-                        Get Quote <i class="fa-solid fa-arrow-right text-sm"></i>
+                    <a href="#contact" class="px-8 py-4 bg-corporateBlue hover:bg-corporateHover text-white font-semibold rounded-xl transition-all shadow-lg shadow-blue-600/30 flex items-center gap-2 text-sm md:text-base">
+                        Get Quote <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
-                    <a href="#fleet" class="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl border border-white/20 backdrop-blur-sm transition-all">
+                    <a href="#fleet" class="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl border border-white/20 backdrop-blur-sm transition-all text-sm md:text-base">
                         Explore Fleet
                     </a>
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-16 max-w-5xl reveal delay-400">
-                <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-xl">
+            <div class="hidden md:grid grid-cols-4 gap-4 mt-16 max-w-5xl reveal delay-400">
+                <div class="bg-black/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-2xl">
                     <div class="text-3xl font-bold text-blue-400 mb-1">14+</div>
                     <div class="text-xs uppercase tracking-wider text-slate-300 font-medium">Years Experience</div>
                 </div>
-                <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-xl">
+                <div class="bg-black/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-2xl">
                     <div class="text-3xl font-bold text-blue-400 mb-1">95+</div>
                     <div class="text-xs uppercase tracking-wider text-slate-300 font-medium">Fleet Vehicles</div>
                 </div>
-                <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-xl">
+                <div class="bg-black/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-2xl">
                     <div class="text-3xl font-bold text-blue-400 mb-1">24/7</div>
                     <div class="text-xs uppercase tracking-wider text-slate-300 font-medium">Operations Center</div>
                 </div>
-                <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-xl">
+                <div class="bg-black/40 backdrop-blur-md border border-white/10 rounded-xl p-5 shadow-2xl">
                     <div class="text-3xl font-bold text-blue-400 mb-1">99%</div>
                     <div class="text-xs uppercase tracking-wider text-slate-300 font-medium">Punctuality Rate</div>
                 </div>
@@ -201,311 +250,314 @@
         </div>
     </section>
 
-    <section id="about" class="py-24 bg-white">
+    <section id="about" class="py-28 bg-white border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div class="reveal">
-                    <span class="text-corporateBlue font-bold uppercase tracking-widest text-xs block mb-2">Corporate Profile</span>
-                    <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
+                    <span class="text-corporateBlue font-extrabold uppercase tracking-widest text-xs block mb-2">Corporate Profile</span>
+                    <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 heading-gradient pb-2">
                         Driving Corporate Success Through Reliable Mobility
                     </h2>
-                    <p class="text-slate-600 leading-relaxed mb-6">
+                    <div class="w-20 h-1.5 bg-corporateBlue rounded-full mb-8 shadow-sm"></div>
+                    
+                    <p class="text-slate-600 leading-relaxed mb-6 font-medium text-sm md:text-base">
                         Classic Travels Solutions India Pvt Ltd embarked on its journey in 2012, aiming to redefine corporate transportation. Over a decade of relentless service and dedication led to our incorporation as a Private Limited entity in 2021.
                     </p>
-                    <p class="text-slate-600 leading-relaxed mb-8">
+                    <p class="text-slate-600 leading-relaxed mb-8 text-sm md:text-base">
                         We are a growing, specialized employee transportation and reliable fleet management company proudly serving major corporate hubs in Mumbai and Pune. Our commitment lies in safe, punctual, and comfortable transit for the modern workforce.
                     </p>
-                    <div class="flex gap-6 border-t border-slate-100 pt-6">
+                    <div class="flex gap-8 border-t border-slate-100 pt-6">
                         <div>
-                            <h4 class="font-bold text-xl text-slate-900 mb-1">2012</h4>
-                            <p class="text-xs text-slate-500 font-medium">Foundation Year</p>
+                            <h4 class="font-extrabold text-2xl text-slate-900 mb-0.5">2012</h4>
+                            <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Foundation Year</p>
                         </div>
                         <div class="w-px bg-slate-200"></div>
                         <div>
-                            <h4 class="font-bold text-xl text-slate-900 mb-1">2021</h4>
-                            <p class="text-xs text-slate-500 font-medium">Pvt Ltd Conversion</p>
+                            <h4 class="font-extrabold text-2xl text-slate-900 mb-0.5">2021</h4>
+                            <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Pvt Ltd Conversion</p>
                         </div>
                     </div>
                 </div>
                 <div class="relative reveal delay-200">
-                    <div class="absolute inset-0 bg-blue-600 rounded-3xl transform rotate-3 scale-105 opacity-10"></div>
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" alt="Corporate Team" class="relative rounded-3xl w-full h-[500px] object-cover shadow-2xl">
+                    <div class="absolute inset-0 bg-blue-600 rounded-3xl transform rotate-2 scale-102 opacity-5"></div>
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" alt="Corporate Logistics Managers" class="relative rounded-3xl w-full h-[450px] object-cover border border-slate-200 shadow-xl">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="py-24 bg-premiumGray border-y border-slate-200">
+    <section id="services" class="py-28 bg-white border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-                <span class="text-corporateBlue font-bold uppercase tracking-widest text-xs block mb-2">Our Solutions</span>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
-                    Tailored Mobility Ecosystems
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <span class="text-corporateBlue font-extrabold uppercase tracking-widest text-xs block mb-2">Our Solutions</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 heading-gradient pb-2">
+                    Tailored Corporate Logistics
                 </h2>
-                <div class="w-16 h-1 bg-corporateBlue mx-auto rounded-full"></div>
+                <div class="w-20 h-1.5 bg-corporateBlue mx-auto rounded-full shadow-sm"></div>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="service-card p-8 rounded-2xl reveal">
-                    <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center text-corporateBlue text-2xl mb-6 shadow-inner">
+                <div class="interactive-card p-8 rounded-2xl reveal">
+                    <div class="animated-icon w-14 h-14 rounded-xl bg-blue-50 border border-blue-100 text-corporateBlue flex items-center justify-center text-xl mb-6 shadow-sm">
                         <i class="fa-solid fa-users"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Employee Transport</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Dedicated customized home-to-office commute management models.</p>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Employee Commutes</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Dedicated customized home-to-office commute management models.</p>
                 </div>
                 
-                <div class="service-card p-8 rounded-2xl reveal delay-100">
-                    <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center text-corporateBlue text-2xl mb-6 shadow-inner">
+                <div class="interactive-card p-8 rounded-2xl reveal delay-100">
+                    <div class="animated-icon w-14 h-14 rounded-xl bg-blue-50 border border-blue-100 text-corporateBlue flex items-center justify-center text-xl mb-6 shadow-sm">
                         <i class="fa-solid fa-building-user"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Corporate Pickup</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Punctual operational setups for multi-tier employees and shifts.</p>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Shift Deployments</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Punctual operational setups for multi-tier employees and shifts.</p>
                 </div>
 
-                <div class="service-card p-8 rounded-2xl reveal delay-200">
-                    <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center text-corporateBlue text-2xl mb-6 shadow-inner">
+                <div class="interactive-card p-8 rounded-2xl reveal delay-200">
+                    <div class="animated-icon w-14 h-14 rounded-xl bg-blue-50 border border-blue-100 text-corporateBlue flex items-center justify-center text-xl mb-6 shadow-sm">
                         <i class="fa-solid fa-sliders"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Fleet Management</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Comprehensive tracking, standard maintenance workflows & allocation.</p>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Fleet Infrastructure</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Comprehensive tracking, standard maintenance workflows & allocation.</p>
                 </div>
 
-                <div class="service-card p-8 rounded-2xl reveal delay-300">
-                    <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center text-corporateBlue text-2xl mb-6 shadow-inner">
+                <div class="interactive-card p-8 rounded-2xl reveal delay-300">
+                    <div class="animated-icon w-14 h-14 rounded-xl bg-blue-50 border border-blue-100 text-corporateBlue flex items-center justify-center text-xl mb-6 shadow-sm">
                         <i class="fa-solid fa-plane-departure"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Airport Transfers</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Seamless 24/7 client pickup and drop with flight delay tracking.</p>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Airport Transfers</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Seamless 24/7 client pickup and drop with flight delay tracking.</p>
                 </div>
 
-                <div class="service-card p-8 rounded-2xl reveal">
-                    <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center text-corporateBlue text-2xl mb-6 shadow-inner">
+                <div class="interactive-card p-8 rounded-2xl reveal">
+                    <div class="animated-icon w-14 h-14 rounded-xl bg-blue-50 border border-blue-100 text-corporateBlue flex items-center justify-center text-xl mb-6 shadow-sm">
                         <i class="fa-solid fa-people-group"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Staff Transport</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Bulk mass transport setups optimizing cross-route density smoothly.</p>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Bulk Staff Transit</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Bulk mass transport setups optimizing cross-route density constraints smoothly.</p>
                 </div>
 
-                <div class="service-card p-8 rounded-2xl reveal delay-100">
-                    <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center text-corporateBlue text-2xl mb-6 shadow-inner">
+                <div class="interactive-card p-8 rounded-2xl reveal delay-100">
+                    <div class="animated-icon w-14 h-14 rounded-xl bg-blue-50 border border-blue-100 text-corporateBlue flex items-center justify-center text-xl mb-6 shadow-sm">
                         <i class="fa-solid fa-briefcase"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Corporate Travel</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Flexible executive trip options and strategic corporate offsites.</p>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Executive Business</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Flexible executive trip options and strategic corporate offsites.</p>
                 </div>
 
-                <div class="service-card p-8 rounded-2xl reveal delay-200">
-                    <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center text-corporateBlue text-2xl mb-6 shadow-inner">
+                <div class="interactive-card p-8 rounded-2xl reveal delay-200">
+                    <div class="animated-icon w-14 h-14 rounded-xl bg-blue-50 border border-blue-100 text-corporateBlue flex items-center justify-center text-xl mb-6 shadow-sm">
                         <i class="fa-solid fa-chart-pie"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">MIS Reporting</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Detailed digital reports containing custom logs and billing parameters.</p>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Analytical MIS Suite</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Detailed digital reports containing custom logs and billing parameters.</p>
                 </div>
 
-                <div class="service-card p-8 rounded-2xl reveal delay-300">
-                    <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center text-corporateBlue text-2xl mb-6 shadow-inner">
+                <div class="interactive-card p-8 rounded-2xl reveal delay-300">
+                    <div class="animated-icon w-14 h-14 rounded-xl bg-blue-50 border border-blue-100 text-corporateBlue flex items-center justify-center text-xl mb-6 shadow-sm">
                         <i class="fa-solid fa-map-pin"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">GPS Tracking</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">Real-time precise location monitoring for complete route validation.</p>
+                    <h3 class="text-lg font-bold text-slate-900 mb-3">Live Telematics</h3>
+                    <p class="text-slate-500 text-xs leading-relaxed">Real-time precise location monitoring for complete route validation.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="fleet" class="py-24 bg-white">
+    <section id="fleet" class="py-28 bg-white border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-                <span class="text-corporateBlue font-bold uppercase tracking-widest text-xs block mb-2">The Fleet Ecosystem</span>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
-                    Pristine Corporate Vehicles
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <span class="text-corporateBlue font-extrabold uppercase tracking-widest text-xs block mb-2">Transit Capacity</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 heading-gradient pb-2">
+                    Premium Quality Operations Fleet
                 </h2>
-                <div class="w-16 h-1 bg-corporateBlue mx-auto rounded-full"></div>
-                <p class="mt-4 text-slate-500">Meticulously maintained, fully compliant fleet categorized for specific corporate hierarchies.</p>
+                <div class="w-20 h-1.5 bg-corporateBlue mx-auto rounded-full shadow-sm"></div>
+                <p class="mt-4 text-slate-500 text-sm md:text-base">Custom structured ecosystems mapped perfectly for enterprise workflow parameters.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="spec-card p-8 rounded-2xl reveal">
                     <div class="flex justify-between items-start mb-6">
                         <div>
-                            <h3 class="text-2xl font-bold text-slate-900 mb-1">MUV Class</h3>
-                            <p class="text-sm text-slate-500">Ertiga / Sumo / Tavera</p>
+                            <h3 class="text-xl font-bold text-slate-900 mb-0.5">Enterprise Commute Tier</h3>
+                            <p class="text-xs text-slate-400">High-Efficiency Asset Deployment</p>
                         </div>
-                        <span class="bg-blue-100 text-corporateBlue text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Team Commute</span>
+                        <span class="bg-blue-50 text-corporateBlue text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">High Density</span>
                     </div>
-                    <ul class="space-y-4 text-sm text-slate-700 font-medium">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-users text-corporateBlue w-5 text-center"></i> 6 to 9 Seating Capacity</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-snowflake text-corporateBlue w-5 text-center"></i> Standard / Dual Climate AC</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-suitcase text-corporateBlue w-5 text-center"></i> Moderate Luggage Space</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-route text-corporateBlue w-5 text-center"></i> Optimized for Dynamic Routing</li>
+                    <ul class="space-y-4 text-xs text-slate-600 font-medium">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-user-group text-corporateBlue w-4 text-center"></i> 6 to 9 Passenger Optimization Matrix</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-snowflake text-corporateBlue w-4 text-center"></i> Advanced Integrated Dual Climate AC Controls</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-box text-corporateBlue w-4 text-center"></i> Ergonomic Modular Luggage Layout Capacity</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-bezier-curve text-corporateBlue w-4 text-center"></i> Mapped Specifically for Route Node Optimization</li>
                     </ul>
                 </div>
 
                 <div class="spec-card p-8 rounded-2xl reveal delay-100">
                     <div class="flex justify-between items-start mb-6">
                         <div>
-                            <h3 class="text-2xl font-bold text-slate-900 mb-1">Sedan Class</h3>
-                            <p class="text-sm text-slate-500">Dzire / Indigo / Etios</p>
+                            <h3 class="text-xl font-bold text-slate-900 mb-0.5">Executive Comfort Tier</h3>
+                            <p class="text-xs text-slate-400">Pristine Fleet Management</p>
                         </div>
-                        <span class="bg-blue-100 text-corporateBlue text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Executive Drops</span>
+                        <span class="bg-blue-50 text-corporateBlue text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Point to Point</span>
                     </div>
-                    <ul class="space-y-4 text-sm text-slate-700 font-medium">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-users text-corporateBlue w-5 text-center"></i> 4+1 Seating Capacity</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-snowflake text-corporateBlue w-5 text-center"></i> Premium Air Conditioning</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-suitcase text-corporateBlue w-5 text-center"></i> High Boot Space (Airport Ready)</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-shield-check text-corporateBlue w-5 text-center"></i> Enhanced Safety & Comfort</li>
+                    <ul class="space-y-4 text-xs text-slate-600 font-medium">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-user text-corporateBlue w-4 text-center"></i> 4 Passenger Corporate Configuration Base</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-wind text-corporateBlue w-4 text-center"></i> Climate Controlled High Comfort Air Conditioning</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-briefcase text-corporateBlue w-4 text-center"></i> Extended Deep Trunk System (Airport Transits)</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-shield-halved text-corporateBlue w-4 text-center"></i> Dual Supplemental Restraint Safety Frameworks</li>
                     </ul>
                 </div>
 
                 <div class="spec-card p-8 rounded-2xl reveal delay-200">
                     <div class="flex justify-between items-start mb-6">
                         <div>
-                            <h3 class="text-2xl font-bold text-slate-900 mb-1">Premium SUV</h3>
-                            <p class="text-sm text-slate-500">Innova / Hexa / Premium</p>
+                            <h3 class="text-xl font-bold text-slate-900 mb-0.5">VIP Management Tier</h3>
+                            <p class="text-xs text-slate-400">Luxury Operations Standard</p>
                         </div>
-                        <span class="bg-blue-100 text-corporateBlue text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">VIP & Management</span>
+                        <span class="bg-blue-50 text-corporateBlue text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Premium Logistics</span>
                     </div>
-                    <ul class="space-y-4 text-sm text-slate-700 font-medium">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-users text-corporateBlue w-5 text-center"></i> 6 to 7 Pushback Seating</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-snowflake text-corporateBlue w-5 text-center"></i> Multi-zone Climate Control</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-road text-corporateBlue w-5 text-center"></i> Superior Suspension (Outstation)</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-star text-corporateBlue w-5 text-center"></i> High-end VIP Amenities</li>
+                    <ul class="space-y-4 text-xs text-slate-600 font-medium">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-chair text-corporateBlue w-4 text-center"></i> Expanded Premium Captain Seating Infrastructure</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-temperature-arrow-up text-corporateBlue w-4 text-center"></i> Independent Zone Automated Environment Control</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-kit-medical text-corporateBlue w-4 text-center"></i> First-Aid Kits & Integrated Real-time Panic Alarm SOS</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-gem text-corporateBlue w-4 text-center"></i> Elite Styling Accents for Senior Management Transit</li>
                     </ul>
                 </div>
             </div>
-            
-            <div class="mt-10 bg-slate-50 border border-slate-200 rounded-xl p-4 text-center text-sm font-semibold text-slate-600 reveal">
-                <i class="fa-solid fa-check-circle text-green-500 mr-2"></i> All vehicles are equipped with GPS tracking, Panic/SOS buttons, and First-Aid kits as per corporate compliance.
-            </div>
         </div>
     </section>
 
-    <section id="whychoose" class="py-24 bg-premiumDark relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none"></div>
-        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-corporateBlue/10 rounded-full blur-[100px] pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-                <span class="text-blue-400 font-bold uppercase tracking-widest text-xs block mb-2">Our Core Value Pillars</span>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
-                    Setting the Benchmark in Transit
+    <section id="whychoose" class="py-28 bg-white border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <span class="text-corporateBlue font-extrabold uppercase tracking-widest text-xs block mb-2">Enterprise Advantages</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 heading-gradient pb-2">
+                    Setting the Benchmark in Transit Metrics
                 </h2>
-                <div class="w-16 h-1 bg-corporateBlue mx-auto rounded-full"></div>
+                <div class="w-20 h-1.5 bg-corporateBlue mx-auto rounded-full shadow-sm"></div>
             </div>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-colors reveal">
-                    <i class="fa-solid fa-satellite-dish text-3xl text-blue-400 mb-4 block animate-pulse-glow"></i>
-                    <h4 class="font-bold text-white mb-2 text-lg">GPS Integration</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Continuous exact location tracking setup across all operational paths.</p>
+                <div class="interactive-card p-8 rounded-2xl reveal">
+                    <div class="animated-icon w-12 h-12 bg-blue-50 border border-blue-100 text-corporateBlue rounded-xl flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-satellite-dish"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-2">GPS Fleet Tracking</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed">Continuous exact location tracking setup across all operational paths.</p>
                 </div>
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-colors reveal delay-100">
-                    <i class="fa-solid fa-clock text-3xl text-blue-400 mb-4 block"></i>
-                    <h4 class="font-bold text-white mb-2 text-lg">On-Time Pickup</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Meticulous timeline adherence workflows maximizing workflow output.</p>
+                <div class="interactive-card p-8 rounded-2xl reveal delay-100">
+                    <div class="animated-icon w-12 h-12 bg-blue-50 border border-blue-100 text-corporateBlue rounded-xl flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-2">On-Time Pickup Alignment</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed">Meticulous timeline adherence workflows maximizing enterprise workflow output.</p>
                 </div>
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-colors reveal delay-200">
-                    <i class="fa-solid fa-user-tie text-3xl text-blue-400 mb-4 block"></i>
-                    <h4 class="font-bold text-white mb-2 text-lg">Pro Drivers</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Thorough background validation combined with driving assessments.</p>
+                <div class="interactive-card p-8 rounded-2xl reveal delay-200">
+                    <div class="animated-icon w-12 h-12 bg-blue-50 border border-blue-100 text-corporateBlue rounded-xl flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-2">Verified Chauffeurs</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed">Thorough background validation rules combined with driving assessments.</p>
                 </div>
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-colors reveal delay-300">
-                    <i class="fa-solid fa-shield-halved text-3xl text-blue-400 mb-4 block"></i>
-                    <h4 class="font-bold text-white mb-2 text-lg">Safety Compliance</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Complete adherence to local corporate transit laws and security guidelines.</p>
+                <div class="interactive-card p-8 rounded-2xl reveal delay-300">
+                    <div class="animated-icon w-12 h-12 bg-blue-50 border border-blue-100 text-corporateBlue rounded-xl flex items-center justify-center text-lg mb-4">
+                        <i class="fa-solid fa-shield-circle-check"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-2">Legal Compliance Rules</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed">Complete adherence to local corporate transit laws and security guidelines.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="process" class="py-24 bg-premiumGray">
+    <section id="process" class="py-28 bg-white border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-24 reveal">
-                <span class="text-corporateBlue font-bold uppercase tracking-widest text-xs block mb-2">Operational Pipeline</span>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
-                    Our Streamlined Workflow
+                <span class="text-corporateBlue font-extrabold uppercase tracking-widest text-xs block mb-2">Ledger Architecture</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 heading-gradient pb-2">
+                    Our Authenticated Blockchain Workflow
                 </h2>
-                <div class="w-16 h-1 bg-corporateBlue mx-auto rounded-full"></div>
+                <div class="w-20 h-1.5 bg-corporateBlue mx-auto rounded-full shadow-sm"></div>
             </div>
 
-            <div class="relative blockchain-container flex flex-col md:flex-row justify-between items-start md:items-center gap-10 md:gap-4 px-4 md:px-0">
+            <div class="blockchain-track grid md:grid-cols-3 lg:grid-cols-6 gap-6 relative">
                 
-                <div class="relative z-10 flex md:flex-col items-center gap-6 md:gap-4 w-full md:w-1/6 reveal">
-                    <div class="w-12 h-12 shrink-0 bg-white border-4 border-corporateBlue rounded-full flex items-center justify-center font-bold text-lg text-corporateBlue shadow-[0_0_15px_rgba(29,78,216,0.4)]">1</div>
-                    <div class="md:text-center">
-                        <h4 class="font-bold text-slate-900 mb-1">Vehicle Allocation</h4>
-                        <p class="text-xs text-slate-500">Matching appropriate cars with headcounts.</p>
+                <div class="blockchain-node relative z-10 p-5 rounded-xl flex flex-col items-center text-center reveal">
+                    <div class="w-12 h-12 rounded-full bg-corporateBlue text-white font-extrabold flex items-center justify-center mb-4 text-sm shadow-[0_0_15px_rgba(29,78,216,0.4)] animate-pulse-glow">
+                        01
                     </div>
+                    <h4 class="font-bold text-sm text-slate-900 mb-1">Asset Allocation</h4>
+                    <p class="text-[10px] text-slate-500 leading-normal">Deploying matched car capacity variants dynamically.</p>
                 </div>
 
-                <div class="relative z-10 flex md:flex-col items-center gap-6 md:gap-4 w-full md:w-1/6 reveal delay-100">
-                    <div class="w-12 h-12 shrink-0 bg-white border-4 border-corporateBlue rounded-full flex items-center justify-center font-bold text-lg text-corporateBlue shadow-[0_0_15px_rgba(29,78,216,0.4)]">2</div>
-                    <div class="md:text-center">
-                        <h4 class="font-bold text-slate-900 mb-1">Route Planning</h4>
-                        <p class="text-xs text-slate-500">Node logic to construct shorter safe paths.</p>
+                <div class="blockchain-node relative z-10 p-5 rounded-xl flex flex-col items-center text-center reveal delay-100">
+                    <div class="w-12 h-12 rounded-full bg-corporateBlue text-white font-extrabold flex items-center justify-center mb-4 text-sm shadow-[0_0_15px_rgba(29,78,216,0.4)] animate-pulse-glow">
+                        02
                     </div>
+                    <h4 class="font-bold text-sm text-slate-900 mb-1">Route Mapping</h4>
+                    <p class="text-[10px] text-slate-500 leading-normal">Optimizing shortest path matrices using node logic.</p>
                 </div>
 
-                <div class="relative z-10 flex md:flex-col items-center gap-6 md:gap-4 w-full md:w-1/6 reveal delay-200">
-                    <div class="w-12 h-12 shrink-0 bg-white border-4 border-corporateBlue rounded-full flex items-center justify-center font-bold text-lg text-corporateBlue shadow-[0_0_15px_rgba(29,78,216,0.4)]">3</div>
-                    <div class="md:text-center">
-                        <h4 class="font-bold text-slate-900 mb-1">Driver Sync</h4>
-                        <p class="text-xs text-slate-500">Precise briefing of duties and checklists.</p>
+                <div class="blockchain-node relative z-10 p-5 rounded-xl flex flex-col items-center text-center reveal delay-200">
+                    <div class="w-12 h-12 rounded-full bg-corporateBlue text-white font-extrabold flex items-center justify-center mb-4 text-sm shadow-[0_0_15px_rgba(29,78,216,0.4)] animate-pulse-glow">
+                        03
                     </div>
+                    <h4 class="font-bold text-sm text-slate-900 mb-1">Chauffeur Sync</h4>
+                    <p class="text-[10px] text-slate-500 leading-normal">Secure distribution of real-time roster profiles.</p>
                 </div>
 
-                <div class="relative z-10 flex md:flex-col items-center gap-6 md:gap-4 w-full md:w-1/6 reveal delay-300">
-                    <div class="w-12 h-12 shrink-0 bg-white border-4 border-corporateBlue rounded-full flex items-center justify-center font-bold text-lg text-corporateBlue shadow-[0_0_15px_rgba(29,78,216,0.4)]">4</div>
-                    <div class="md:text-center">
-                        <h4 class="font-bold text-slate-900 mb-1">Pickup Monitor</h4>
-                        <p class="text-xs text-slate-500">Real-time alerts preventing delays.</p>
+                <div class="blockchain-node relative z-10 p-5 rounded-xl flex flex-col items-center text-center reveal delay-300">
+                    <div class="w-12 h-12 rounded-full bg-corporateBlue text-white font-extrabold flex items-center justify-center mb-4 text-sm shadow-[0_0_15px_rgba(29,78,216,0.4)] animate-pulse-glow">
+                        04
                     </div>
+                    <h4 class="font-bold text-sm text-slate-900 mb-1">Pickup Tracking</h4>
+                    <p class="text-[10px] text-slate-500 leading-normal">Continuous check points protecting timeline safety.</p>
                 </div>
 
-                <div class="relative z-10 flex md:flex-col items-center gap-6 md:gap-4 w-full md:w-1/6 reveal delay-400">
-                    <div class="w-12 h-12 shrink-0 bg-white border-4 border-corporateBlue rounded-full flex items-center justify-center font-bold text-lg text-corporateBlue shadow-[0_0_15px_rgba(29,78,216,0.4)]">5</div>
-                    <div class="md:text-center">
-                        <h4 class="font-bold text-slate-900 mb-1">Live Tracking</h4>
-                        <p class="text-xs text-slate-500">Dashboard oversight of current paths.</p>
+                <div class="blockchain-node relative z-10 p-5 rounded-xl flex flex-col items-center text-center reveal delay-400">
+                    <div class="w-12 h-12 rounded-full bg-corporateBlue text-white font-extrabold flex items-center justify-center mb-4 text-sm shadow-[0_0_15px_rgba(29,78,216,0.4)] animate-pulse-glow">
+                        05
                     </div>
+                    <h4 class="font-bold text-sm text-slate-900 mb-1">Live Telematics</h4>
+                    <p class="text-[10px] text-slate-500 leading-normal">Continuous active tracking oversight from dashboard.</p>
                 </div>
 
-                <div class="relative z-10 flex md:flex-col items-center gap-6 md:gap-4 w-full md:w-1/6 reveal delay-500">
-                    <div class="w-12 h-12 shrink-0 bg-white border-4 border-corporateBlue rounded-full flex items-center justify-center font-bold text-lg text-corporateBlue shadow-[0_0_15px_rgba(29,78,216,0.4)]">6</div>
-                    <div class="md:text-center">
-                        <h4 class="font-bold text-slate-900 mb-1">MIS Reporting</h4>
-                        <p class="text-xs text-slate-500">Aggregating telemetry into billing files.</p>
+                <div class="blockchain-node relative z-10 p-5 rounded-xl flex flex-col items-center text-center reveal delay-500">
+                    <div class="w-12 h-12 rounded-full bg-corporateBlue text-white font-extrabold flex items-center justify-center mb-4 text-sm shadow-[0_0_15px_rgba(29,78,216,0.4)] animate-pulse-glow">
+                        06
                     </div>
+                    <h4 class="font-bold text-sm text-slate-900 mb-1">Telemetry MIS</h4>
+                    <p class="text-[10px] text-slate-500 leading-normal">Automating generation of audited compliance records.</p>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <section id="clients" class="py-16 bg-white overflow-hidden border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 mb-10">
+    <section id="clients" class="py-20 bg-white overflow-hidden border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 mb-12">
             <div class="text-center reveal">
-                <h3 class="text-sm font-bold text-slate-400 uppercase tracking-widest">Our Prestigious Corporate Clients</h3>
-                <p class="text-xs text-slate-500 mt-1">Operating at maximum compliance across enterprise ecosystems</p>
+                <h3 class="text-xl md:text-2xl font-extrabold text-slate-900 tracking-tight">Our Prestigious Corporate Clients</h3>
+                <div class="w-12 h-1 bg-corporateBlue mx-auto rounded-full mt-2"></div>
             </div>
         </div>
 
-        <div class="relative flex overflow-hidden">
-            <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10"></div>
-            <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10"></div>
+        <div class="marquee-container relative w-full">
+            <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
-            <div class="marquee-track animate-scroll items-center">
-                <div class="flex-none w-48 mx-6 flex justify-center"><img src="./image/client1.svg" alt="Client 1" class="h-14 object-contain"></div>
-                <div class="flex-none w-48 mx-6 flex justify-center"><img src="./image/client2.svg" alt="Client 2" class="h-14 object-contain"></div>
-                <div class="flex-none w-48 mx-6 flex justify-center"><img src="./image/client3.webp" alt="Client 3" class="h-14 object-contain"></div>
-                <div class="flex-none w-48 mx-6 flex justify-center"><img src="./image/client4.svg" alt="Client 4" class="h-14 object-contain"></div>
-                <div class="flex-none w-48 mx-6 flex justify-center"><img src="./image/client5.svg" alt="Client 5" class="h-14 object-contain"></div>
+            <div class="marquee-content animate-marquee-loop space-x-12">
+                <div class="w-40 md:w-52 shrink-0 flex justify-center"><img src="./image/client1.svg" alt="TCS Logo" class="h-12 object-contain"></div>
+                <div class="w-40 md:w-52 shrink-0 flex justify-center"><img src="./image/client2.svg" alt="IKEA Logo" class="h-12 object-contain"></div>
+                <div class="w-40 md:w-52 shrink-0 flex justify-center"><img src="./image/client3.webp" alt="Godrej Logo" class="h-12 object-contain"></div>
+                <div class="w-40 md:w-52 shrink-0 flex justify-center"><img src="./image/client4.svg" alt="Trafigura Logo" class="h-12 object-contain"></div>
+                <div class="w-40 md:w-52 shrink-0 flex justify-center"><img src="./image/client5.svg" alt="TIAA Logo" class="h-12 object-contain"></div>
                 
-                <div class="flex-none w-48 mx-6 flex justify-center"><img src="./image/client1.svg" alt="Client 1" class="h-14 object-contain"></div>
-                <div class="flex-none w-48 mx-6 flex justify-center"><img src="./image/client2.svg" alt="Client 2" class="h-14 object-contain"></div>
-                <div class="flex-none w-48 mx-6 flex justify-center"><img src="./image/client3.webp" alt="Client 3" class="h-14 object-contain"></div>
-                <div class="flex-none w-48 mx-6 flex justify-center"><img src="./image/client4.svg" alt="Client 4" class="h-14 object-contain"></div>
-                <div class="flex-none w-48 mx-6 flex justify-center"><img src="./image/client5.svg" alt="Client 5" class="h-14 object-contain"></div>
+                <div class="w-40 md:w-52 shrink-0 flex justify-center"><img src="./image/client1.svg" alt="TCS Logo Duplicate" class="h-12 object-contain"></div>
+                <div class="w-40 md:w-52 shrink-0 flex justify-center"><img src="./image/client2.svg" alt="IKEA Logo Duplicate" class="h-12 object-contain"></div>
+                <div class="w-40 md:w-52 shrink-0 flex justify-center"><img src="./image/client3.webp" alt="Godrej Logo Duplicate" class="h-12 object-contain"></div>
+                <div class="w-40 md:w-52 shrink-0 flex justify-center"><img src="./image/client4.svg" alt="Trafigura Logo Duplicate" class="h-12 object-contain"></div>
+                <div class="w-40 md:w-52 shrink-0 flex justify-center"><img src="./image/client5.svg" alt="TIAA Logo Duplicate" class="h-12 object-contain"></div>
             </div>
         </div>
     </section>
@@ -514,217 +566,289 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
                 <div class="reveal">
-                    <div class="text-5xl font-extrabold mb-2 stat-counter" data-target="14" data-suffix="+">0</div>
-                    <div class="text-xs uppercase tracking-widest text-blue-200">Years Experience</div>
+                    <div class="text-4xl md:text-5xl font-extrabold mb-2 running-counter" data-target="14" data-suffix="+">0</div>
+                    <div class="text-xs uppercase tracking-widest text-blue-200 font-semibold">Years Active</div>
                 </div>
                 <div class="reveal delay-100">
-                    <div class="text-5xl font-extrabold mb-2 stat-counter" data-target="95" data-suffix="+">0</div>
-                    <div class="text-xs uppercase tracking-widest text-blue-200">Managed Vehicles</div>
+                    <div class="text-4xl md:text-5xl font-extrabold mb-2 running-counter" data-target="95" data-suffix="+">0</div>
+                    <div class="text-xs uppercase tracking-widest text-blue-200 font-semibold">Vehicles Managed</div>
                 </div>
                 <div class="reveal delay-200">
-                    <div class="text-5xl font-extrabold mb-2 stat-counter" data-target="99" data-suffix="%">0</div>
-                    <div class="text-xs uppercase tracking-widest text-blue-200">Punctuality Rate</div>
+                    <div class="text-4xl md:text-5xl font-extrabold mb-2 running-counter" data-target="99" data-suffix="%">0</div>
+                    <div class="text-xs uppercase tracking-widest text-blue-200 font-semibold">Punctuality Rate</div>
                 </div>
                 <div class="reveal delay-300">
-                    <div class="text-5xl font-extrabold mb-2 stat-counter" data-target="1200" data-suffix="+">0</div>
-                    <div class="text-xs uppercase tracking-widest text-blue-200">Successful Shifts</div>
+                    <div class="text-4xl md:text-5xl font-extrabold mb-2 running-counter" data-target="1200" data-suffix="+">0</div>
+                    <div class="text-xs uppercase tracking-widest text-blue-200 font-semibold">Successful Shifts</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-24 bg-premiumGray">
+    <section id="contact" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-                <span class="text-corporateBlue font-bold uppercase tracking-widest text-xs block mb-2">Connect With Us</span>
-                <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
-                    Partner With Operations
+                <span class="text-corporateBlue font-extrabold uppercase tracking-widest text-xs block mb-2">Contact Operations</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 heading-gradient pb-2">
+                    Partner With Classic Travels
                 </h2>
-                <div class="w-16 h-1 bg-corporateBlue mx-auto rounded-full"></div>
+                <div class="w-20 h-1.5 bg-corporateBlue mx-auto rounded-full shadow-sm"></div>
             </div>
 
-            <div class="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-200 p-8 mb-12 flex flex-col md:flex-row justify-between items-center gap-8 divide-y md:divide-y-0 md:divide-x divide-slate-100 reveal">
-                
-                <div class="flex-1 flex flex-col items-center text-center w-full pt-4 md:pt-0">
-                    <div class="w-12 h-12 bg-blue-50 text-corporateBlue rounded-full flex items-center justify-center text-xl mb-4">
-                        <i class="fa-solid fa-headset"></i>
-                    </div>
-                    <h4 class="font-bold text-slate-900 mb-2">24/7 Helpline</h4>
-                    <a href="tel:7387496086" class="text-sm font-semibold text-slate-600 hover:text-corporateBlue block">+91 73874 96086</a>
-                    <a href="tel:7709355903" class="text-sm font-semibold text-slate-600 hover:text-corporateBlue block">+91 77093 55903</a>
-                </div>
-
-                <div class="flex-1 flex flex-col items-center text-center w-full pt-8 md:pt-0">
-                    <div class="w-12 h-12 bg-blue-50 text-corporateBlue rounded-full flex items-center justify-center text-xl mb-4">
-                        <i class="fa-solid fa-envelope"></i>
-                    </div>
-                    <h4 class="font-bold text-slate-900 mb-2">Corporate Email</h4>
-                    <a href="mailto:mumbaiops@classic-travels.com" class="text-sm font-semibold text-slate-600 hover:text-corporateBlue">mumbaiops@classic-travels.com</a>
-                </div>
-
-                <div class="flex-1 flex flex-col items-center text-center w-full pt-8 md:pt-0">
-                    <div class="w-12 h-12 bg-blue-50 text-corporateBlue rounded-full flex items-center justify-center text-xl mb-4">
-                        <i class="fa-solid fa-building"></i>
-                    </div>
-                    <h4 class="font-bold text-slate-900 mb-2">Head Office</h4>
-                    <p class="text-sm text-slate-600">Shop 5, Om Siddhivinayak CHS,<br>Sec 9, Airoli, Navi Mumbai 400708</p>
-                </div>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-12 items-start">
-                <div class="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-200 reveal">
-                    <h3 class="text-xl font-bold text-slate-900 mb-6">Request Fleet Quote</h3>
+            <div class="grid lg:grid-cols-12 gap-12 items-stretch">
+                <div class="lg:col-span-7 bg-white p-8 rounded-2xl border border-slate-200 reveal shadow-sm">
+                    <h3 class="text-xl font-bold text-slate-900 mb-6">Request Enterprise Fleet Specification</h3>
                     <form class="space-y-5" onsubmit="event.preventDefault();">
                         <div class="grid sm:grid-cols-2 gap-5">
                             <div>
                                 <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Company Name</label>
-                                <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm focus:border-corporateBlue focus:ring-1 focus:ring-corporateBlue outline-none transition-all">
+                                <input type="text" required class="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-sm focus:border-corporateBlue focus:ring-1 focus:ring-corporateBlue outline-none transition-all" placeholder="e.g. Tata Consultancy Services">
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Contact Person</label>
-                                <input type="text" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm focus:border-corporateBlue focus:ring-1 focus:ring-corporateBlue outline-none transition-all">
+                                <input type="text" required class="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-sm focus:border-corporateBlue focus:ring-1 focus:ring-corporateBlue outline-none transition-all" placeholder="e.g. Logistics Manager">
                             </div>
                         </div>
                         <div class="grid sm:grid-cols-2 gap-5">
                             <div>
-                                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Email</label>
-                                <input type="email" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm focus:border-corporateBlue focus:ring-1 focus:ring-corporateBlue outline-none transition-all">
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Email Address</label>
+                                <input type="email" required class="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-sm focus:border-corporateBlue focus:ring-1 focus:ring-corporateBlue outline-none transition-all" placeholder="e.g. administrative@company.com">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Phone</label>
-                                <input type="tel" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm focus:border-corporateBlue focus:ring-1 focus:ring-corporateBlue outline-none transition-all">
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Phone Number</label>
+                                <input type="tel" required class="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-sm focus:border-corporateBlue focus:ring-1 focus:ring-corporateBlue outline-none transition-all" placeholder="e.g. 7387496086">
                             </div>
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Requirement Details</label>
-                            <textarea rows="4" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm focus:border-corporateBlue focus:ring-1 focus:ring-corporateBlue outline-none transition-all"></textarea>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Requirement Specifics</label>
+                            <textarea rows="4" required class="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-sm focus:border-corporateBlue focus:ring-1 focus:ring-corporateBlue outline-none transition-all" placeholder="e.g. Daily transit routes size, standard passenger headcount requirements..."></textarea>
                         </div>
-                        <button class="w-full bg-corporateBlue hover:bg-corporateHover text-white font-bold py-4 rounded-lg transition-all uppercase tracking-wider text-xs shadow-md">
-                            Submit Request
+                        <button type="submit" class="w-full bg-corporateBlue hover:bg-corporateHover text-white font-bold py-4 rounded-lg transition-all uppercase tracking-wider text-xs shadow-md">
+                            Submit Quote Specification
                         </button>
                     </form>
                 </div>
 
-                <div class="rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-200 h-full min-h-[400px] reveal delay-200">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.076395350993!2d72.99049407598858!3d19.104297851280302!2m3!1f0!2f0!3f0!3m2!1i1020!2i768!4f13.1!3m3!1m2!1s0x3be7c0c1692ae59d%3A0x63391d1e4cf273d6!2sAiroli%20Sector%209!5e0!3m2!1sen!2sin!4v1716545000000!3m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-6 reveal">
+                    <div class="border border-slate-200 p-6 rounded-2xl bg-white shadow-sm flex-1 flex flex-col justify-center">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-corporateBlue shrink-0">
+                                <i class="fa-solid fa-phone-volume"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-2 text-sm uppercase tracking-wider">Helpline Number</h4>
+                                <div class="space-y-1 text-sm font-semibold text-slate-700">
+                                    <a href="tel:7387496086" class="block hover:text-corporateBlue transition-colors">+91 73874 96086</a>
+                                    <a href="tel:7709355903" class="block hover:text-corporateBlue transition-colors">+91 77093 55903</a>
+                                    <a href="tel:8097651124" class="block hover:text-corporateBlue transition-colors">+91 80976 51124</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 p-6 rounded-2xl bg-white shadow-sm flex-1 flex flex-col justify-center">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-corporateBlue shrink-0">
+                                <i class="fa-solid fa-envelope-open"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-1 text-sm uppercase tracking-wider">Email</h4>
+                                <a href="mailto:mumbaiops@classic-travels.com" class="text-sm font-semibold text-corporateBlue hover:underline">
+                                    mumbaiops@classic-travels.com
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 p-6 rounded-2xl bg-white shadow-sm flex-1 flex flex-col justify-center">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-corporateBlue shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 mb-1 text-sm uppercase tracking-wider">Head Office (HO)</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed font-medium">
+                                    Shop No. 5, Om Siddhivinayak CHS Ltd,<br>
+                                    Plot No. D-1/D-1A, Sec 9,<br>
+                                    Airoli, Navi Mumbai - 400708
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-premiumDark text-slate-400 pt-16 pb-8 border-t border-slate-800">
+    <footer class="bg-black text-zinc-400 pt-16 pb-8 border-t border-zinc-900">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12 border-b border-slate-800 pb-12">
-                <div>
-                    <img src="./image/logo.png" alt="Classic Travels" class="h-10 w-auto mb-4 brightness-0 invert opacity-90">
-                    <p class="text-sm text-slate-400 leading-relaxed max-w-xs">
-                        Premium corporate employee transportation and fleet management across Maharashtra. ISO compliant and technology driven.
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 border-b border-zinc-900 pb-12 items-start">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-corporateBlue flex items-center justify-center text-white text-lg shadow-md">
+                            <i class="fa-solid fa-car-side"></i>
+                        </div>
+                        <span class="text-white font-extrabold text-lg tracking-tight">Classic Travels</span>
+                    </div>
+                    <p class="text-xs text-zinc-400 leading-relaxed max-w-xs">
+                        Premium corporate employee transits, logistics compliance frameworks, and optimized route configurations across critical enterprise industrial zones.
                     </p>
                 </div>
+
                 <div>
-                    <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#about" class="hover:text-corporateBlue transition-colors">About Us</a></li>
-                        <li><a href="#services" class="hover:text-corporateBlue transition-colors">Services</a></li>
-                        <li><a href="#fleet" class="hover:text-corporateBlue transition-colors">Our Fleet</a></li>
-                        <li><a href="#contact" class="hover:text-corporateBlue transition-colors">Contact</a></li>
+                    <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-xs font-medium">
+                        <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Transit Solutions</a></li>
+                        <li><a href="#fleet" class="hover:text-white transition-colors">Managed Fleet</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Contact Operations</a></li>
                     </ul>
                 </div>
+
                 <div>
-                    <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Service Area</h4>
-                    <p class="text-sm text-slate-400 mb-2">Mumbai • Navi Mumbai • Thane</p>
-                    <p class="text-sm text-slate-400">Pune • PCMC • Chakan</p>
+                    <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-4">Service Area</h4>
+                    <p class="text-xs text-zinc-400 mb-2 font-medium"><strong class="text-zinc-200">Mumbai Nodes:</strong> Navi Mumbai, Thane, Commercial Belapur Corridors.</p>
+                    <p class="text-xs text-zinc-400 font-medium"><strong class="text-zinc-200">Pune Nodes:</strong> Comprehensive Enterprise Information Technology Hubs.</p>
                 </div>
             </div>
 
             <div class="text-center flex flex-col items-center justify-center gap-2">
-                <p class="text-sm text-slate-500 font-medium">
+                <p class="text-xs md:text-sm text-zinc-500 font-semibold tracking-wide hidden md:block">
                     © 2026 Classic Travels Solutions India Pvt Ltd. All rights reserved.
                 </p>
-                <p class="text-sm text-slate-600">
-                    This website developed by <a href="http://www.knoxit.in" target="_blank" rel="noopener" class="text-slate-400 hover:text-corporateBlue underline decoration-slate-600 underline-offset-4 transition-colors">www.knoxit.in</a>
+                <p class="text-[11px] text-zinc-500 font-bold tracking-wide md:hidden leading-normal">
+                    © 2026 Classic Travels Solutions India Pvt Ltd.<br>
+                    <span class="block text-center mt-0.5">All rights reserved.</span>
+                </p>
+                
+                <p class="text-xs text-zinc-600 font-medium">
+                    This website developed by <a href="http://www.knoxit.in" target="_blank" rel="noopener" class="text-zinc-400 hover:text-corporateBlue underline underline-offset-4 transition-colors font-semibold">www.knoxit.in</a>
                 </p>
             </div>
         </div>
     </footer>
 
-    <a href="https://wa.me/917387496086?text=Hi%20Classic%20Travels,%20I%20need%20a%20corporate%20transport%20quote." target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 text-white flex items-center justify-center rounded-full shadow-lg text-3xl wa-btn hover:scale-110 transition-transform">
+    <a href="https://wa.me/917387496086?text=Hi%20Classic%20Travels%20Solutions,%20I%20am%20interested%20in%20obtaining%20a%20corporate%20fleet%20transportation%20quote%20for%20our%20workforce." 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 text-white flex items-center justify-center rounded-full shadow-2xl text-3xl pulse-wa hover:scale-110 transition-transform"
+       title="Connect with Operations via WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <button id="btn-top" class="fixed bottom-24 right-7 z-40 w-12 h-12 bg-white text-slate-800 border border-slate-200 rounded-full shadow-lg opacity-0 translate-y-6 transition-all duration-300 hover:bg-slate-50 flex items-center justify-center text-sm pointer-events-none">
+    <button id="scroll-top-btn" class="fixed bottom-24 right-7 z-40 w-11 h-11 bg-white text-slate-800 border border-slate-200 rounded-full shadow-lg opacity-0 translate-y-6 transition-all duration-300 flex items-center justify-center text-xs pointer-events-none hover:bg-slate-50">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 
     <script>
-        // Navbar & Scroll Top
-        const nav = document.getElementById('navbar');
-        const btnTop = document.getElementById('btn-top');
+        // Sticky Navbar Scroll Management Script
+        const navbar = document.getElementById('navbar');
+        const scrollTopBtn = document.getElementById('scroll-top-btn');
+
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-md', 'py-2'); nav.classList.remove('py-4');
-                btnTop.classList.replace('opacity-0', 'opacity-100');
-                btnTop.classList.replace('translate-y-6', 'translate-y-0');
-                btnTop.classList.remove('pointer-events-none');
+            if (window.scrollY > 40) {
+                navbar.classList.add('shadow-xl', 'py-3');
+                navbar.classList.remove('py-4');
+                scrollTopBtn.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+                scrollTopBtn.classList.add('opacity-100', 'translate-y-0');
             } else {
-                nav.classList.add('py-4'); nav.classList.remove('shadow-md', 'py-2');
-                btnTop.classList.replace('opacity-100', 'opacity-0');
-                btnTop.classList.replace('translate-y-0', 'translate-y-6');
-                btnTop.classList.add('pointer-events-none');
+                navbar.classList.remove('shadow-xl', 'py-3');
+                navbar.classList.add('py-4');
+                scrollTopBtn.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+                scrollTopBtn.classList.remove('opacity-100', 'translate-y-0');
             }
         });
 
-        btnTop.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-        // Mobile Menu
-        document.getElementById('menu-toggle').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
+        // Right Side Sliding Drawer Menu Control Logic System
+        const toggleBtn = document.getElementById('menu-toggle-btn');
+        const sideDrawer = document.getElementById('side-drawer');
+        const overlay = document.getElementById('sidebar-overlay');
+        const drawerLinks = document.querySelectorAll('.drawer-link');
+
+        const openDrawerMenu = () => {
+            toggleBtn.classList.add('menu-open');
+            sideDrawer.classList.remove('translate-x-full');
+            overlay.classList.remove('hidden');
+        };
+
+        const closeDrawerMenu = () => {
+            toggleBtn.classList.remove('menu-open');
+            sideDrawer.classList.add('translate-x-full');
+            overlay.classList.add('hidden');
+        };
+
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (sideDrawer.classList.contains('translate-x-full')) {
+                openDrawerMenu();
+            } else {
+                closeDrawerMenu();
+            }
         });
-        document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.add('hidden');
-        }));
 
-        // Scroll Reveal
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('active'); observer.unobserve(e.target); } });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        // Close when clicking outside drawer component
+        document.addEventListener('click', (e) => {
+            if (!sideDrawer.contains(e.target) && !toggleBtn.contains(e.target)) {
+                closeDrawerMenu();
+            }
+        });
+        overlay.addEventListener('click', closeDrawerMenu);
+        drawerLinks.forEach(link => link.addEventListener('click', closeDrawerMenu));
 
-        // Strict Stats Counter Logic
-        const counters = document.querySelectorAll('.stat-counter');
-        let counted = false;
+        // Intersection Observer Animation Loader Script
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries, observerInstance) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observerInstance.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-        const startCounting = () => {
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const suffix = counter.getAttribute('data-suffix') || '';
-                const duration = 2000; // 2 seconds
-                const step = target / (duration / 16); // 60fps
-                let current = 0;
+        revealElements.forEach(el => revealObserver.observe(el));
 
-                const updateCounter = () => {
-                    current += step;
-                    if (current < target) {
-                        counter.innerText = Math.ceil(current) + suffix;
-                        requestAnimationFrame(updateCounter);
+        // Strict Numerical Progression Counting Metric Logic Setup
+        const runningCounters = document.querySelectorAll('.running-counter');
+        let counterSequenceTriggered = false;
+
+        const executeNumericCounting = () => {
+            runningCounters.forEach(counter => {
+                const targetMaxVal = +counter.getAttribute('data-target');
+                const structuralSuffix = counter.getAttribute('data-suffix') || '';
+                const durationTimeline = 2000; 
+                const frameStepIncrement = targetMaxVal / (durationTimeline / 16);
+                let workingCurrentVal = 0;
+
+                const stepIteration = () => {
+                    workingCurrentVal += frameStepIncrement;
+                    if (workingCurrentVal < targetMaxVal) {
+                        counter.innerText = Math.ceil(workingCurrentVal) + structuralSuffix;
+                        requestAnimationFrame(stepIteration);
                     } else {
-                        counter.innerText = target + suffix;
+                        counter.innerText = targetMaxVal + structuralSuffix;
                     }
                 };
-                updateCounter();
+                requestAnimationFrame(stepIteration);
             });
         };
 
-        // Strict Intersection Observer (Fully Visible)
-        const statsSection = document.getElementById('counters');
-        const statsObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting && !counted) {
-                startCounting();
-                counted = true;
+        // Rigid 80% Visibility Intersection Threshold Enforcer Rule
+        const statsLayoutContainer = document.getElementById('counters');
+        const statsObserverInstance = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !counterSequenceTriggered) {
+                executeNumericCounting();
+                counterSequenceTriggered = true;
             }
-        }, { threshold: 0.8 }); // 0.8 means 80% of the section must be visible to trigger
+        }, { threshold: 0.8 });
 
-        if (statsSection) statsObserver.observe(statsSection);
+        if (statsLayoutContainer) statsObserverInstance.observe(statsLayoutContainer);
     </script>
 </body>
 </html>
+"""
+
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html_code)
