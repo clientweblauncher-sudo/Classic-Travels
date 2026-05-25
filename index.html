@@ -1,4 +1,4 @@
-html_code = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -58,17 +58,21 @@ html_code = """<!DOCTYPE html>
             border: 1px solid #E2E8F0;
             transition: all 0.3s ease;
         }
+        
+        /* Radiant Pop Effect */
         .interactive-card:hover {
             transform: translateY(-5px);
-            border-image: linear-gradient(to right, #1D4ED8, #3B82F6) 1;
-            box-shadow: 0 15px 30px -10px rgba(29, 78, 216, 0.15);
+            border-color: #3B82F6;
+            box-shadow: 0 15px 30px -10px rgba(29, 78, 216, 0.15), 0 0 12px 2px rgba(59, 130, 246, 0.4);
         }
         
-        .animated-icon {
-            transition: transform 0.4s ease;
+        /* Double Flip Animation (360 degrees) */
+        @keyframes double-flip {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
         }
         .interactive-card:hover .animated-icon {
-            transform: scaleX(-1);
+            animation: double-flip 0.6s ease-in-out;
             color: #1D4ED8;
         }
 
@@ -156,7 +160,7 @@ html_code = """<!DOCTYPE html>
 
     <section id="home-desktop" class="hidden md:flex relative min-h-screen items-center justify-center overflow-hidden pt-16 bg-white">
         <div class="absolute inset-0 w-full h-full z-0">
-            <video autoplay muted playsinline loop class="w-full h-full object-cover">
+            <video autoplay muted playsinline class="w-full h-full object-cover">
                 <source src="./image/bannervideo.mp4" type="video/mp4">
             </video>
         </div>
@@ -206,14 +210,14 @@ html_code = """<!DOCTYPE html>
     </section>
 
     <section id="home-mobile" class="md:hidden flex flex-col w-full bg-white pt-20">
-        <div class="px-6 pb-4 pt-2 flex justify-center w-full">
+        <div class="px-6 pb-2 pt-2 flex justify-center w-full">
             <span class="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-corporateBlue text-xs font-semibold mx-auto">
                 <i class="fa-solid fa-shield-halved"></i> ISO Compliant Fleet Ecosystem
             </span>
         </div>
 
         <div class="relative w-full aspect-video">
-            <video autoplay muted playsinline loop class="w-full h-full object-cover">
+            <video autoplay muted playsinline class="w-full h-full object-cover">
                 <source src="./image/bannervideo.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-black/70 backdrop-blur-sm flex flex-col items-center justify-center px-6 text-center">
@@ -572,11 +576,10 @@ html_code = """<!DOCTYPE html>
                         <div class="animated-icon w-10 h-10 rounded-lg bg-blue-50 text-corporateBlue flex items-center justify-center shrink-0 text-lg">
                             <i class="fa-solid fa-phone"></i>
                         </div>
-                        <div class="overflow-hidden">
+                        <div>
                             <h4 class="font-bold text-slate-900 mb-1 text-sm tracking-wide">Helpline Number</h4>
-                            <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 text-xs font-medium text-slate-600 whitespace-nowrap">
+                            <div class="flex flex-col text-xs font-medium text-slate-600">
                                 <a href="tel:7387496086" class="hover:text-corporateBlue">+91 7387496086</a>
-                                <a href="tel:7709355903" class="hover:text-corporateBlue hidden sm:block">|</a>
                                 <a href="tel:7709355903" class="hover:text-corporateBlue">+91 7709355903</a>
                             </div>
                         </div>
@@ -586,9 +589,9 @@ html_code = """<!DOCTYPE html>
                         <div class="animated-icon w-10 h-10 rounded-lg bg-blue-50 text-corporateBlue flex items-center justify-center shrink-0 text-lg">
                             <i class="fa-solid fa-envelope"></i>
                         </div>
-                        <div class="overflow-hidden">
+                        <div class="min-w-0">
                             <h4 class="font-bold text-slate-900 mb-1 text-sm tracking-wide">Email</h4>
-                            <a href="mailto:mumbaiops@classic-travels.com" class="text-xs font-medium text-corporateBlue hover:underline whitespace-nowrap block truncate">
+                            <a href="mailto:mumbaiops@classic-travels.com" class="text-xs font-medium text-corporateBlue hover:underline break-words">
                                 mumbaiops@classic-travels.com
                             </a>
                         </div>
@@ -598,9 +601,9 @@ html_code = """<!DOCTYPE html>
                         <div class="animated-icon w-10 h-10 rounded-lg bg-blue-50 text-corporateBlue flex items-center justify-center shrink-0 text-lg">
                             <i class="fa-solid fa-location-dot"></i>
                         </div>
-                        <div class="overflow-hidden">
+                        <div>
                             <h4 class="font-bold text-slate-900 mb-1 text-sm tracking-wide">Head Office (HO)</h4>
-                            <p class="text-xs text-slate-500 font-medium whitespace-nowrap truncate">
+                            <p class="text-xs text-slate-500 font-medium break-words">
                                 Shop 5, Om Siddhivinayak CHS, Sec 9, Airoli, Navi Mumbai 400708
                             </p>
                         </div>
@@ -760,7 +763,3 @@ html_code = """<!DOCTYPE html>
     </script>
 </body>
 </html>
-"""
-
-with open("index.html", "w", encoding="utf-8") as f:
-    f.write(html_code)
