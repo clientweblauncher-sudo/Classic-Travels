@@ -1,8 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+html_code = """<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Classic Travels Solutions India Pvt Ltd | Corporate Transportation</title>
     <link rel="icon" type="image/png" href="./image/favicon.png">
     
@@ -26,16 +26,11 @@
                     },
                     animation: {
                         'marquee-loop': 'marquee-loop 30s linear infinite',
-                        'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         'marquee-loop': {
                             '0%': { transform: 'translateX(0%)' },
                             '100%': { transform: 'translateX(-50%)' },
-                        },
-                        'pulse-glow': {
-                            '0%, 100%': { opacity: 1, transform: 'scale(1)' },
-                            '50%': { opacity: .6, transform: 'scale(1.05)' },
                         }
                     }
                 }
@@ -49,6 +44,7 @@
             background-color: #FFFFFF;
             color: #0F172A;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         .heading-gradient {
@@ -64,15 +60,16 @@
         }
         .interactive-card:hover {
             transform: translateY(-5px);
-            border-color: #1D4ED8;
+            border-image: linear-gradient(to right, #1D4ED8, #3B82F6) 1;
             box-shadow: 0 15px 30px -10px rgba(29, 78, 216, 0.15);
         }
-        .interactive-card:hover .animated-icon {
-            transform: scale(1.15) translateY(-2px);
-            color: #1D4ED8;
-        }
+        
         .animated-icon {
-            transition: all 0.3s ease;
+            transition: transform 0.4s ease;
+        }
+        .interactive-card:hover .animated-icon {
+            transform: scaleX(-1);
+            color: #1D4ED8;
         }
 
         @keyframes custom-wave {
@@ -109,6 +106,17 @@
         .menu-open .bar-1 { transform: rotate(45deg) translate(6px, 6px); }
         .menu-open .bar-2 { opacity: 0; }
         .menu-open .bar-3 { transform: rotate(-45deg) translate(6px, -7px); }
+
+        /* Custom Popup styling */
+        #success-popup {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        #success-popup.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
     </style>
 </head>
 <body class="antialiased bg-white">
@@ -120,12 +128,11 @@
             </a>
 
             <div class="hidden lg:flex items-center space-x-8 font-semibold text-sm">
-                <a href="#home" class="hover:text-corporateBlue transition-colors">Home</a>
+                <a href="#home-desktop" class="hover:text-corporateBlue transition-colors">Home</a>
                 <a href="#about" class="hover:text-corporateBlue transition-colors">About</a>
                 <a href="#services" class="hover:text-corporateBlue transition-colors">Services</a>
                 <a href="#fleet" class="hover:text-corporateBlue transition-colors">Fleet</a>
                 <a href="#whychoose" class="hover:text-corporateBlue transition-colors">Why Choose Us</a>
-                <a href="#process" class="hover:text-corporateBlue transition-colors">Process</a>
                 <a href="#contact" class="bg-corporateBlue hover:bg-corporateHover text-white px-6 py-2.5 rounded-lg transition-all shadow-md">Get Quote</a>
             </div>
 
@@ -138,12 +145,11 @@
 
         <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 hidden z-40 transition-opacity duration-300"></div>
         <div id="side-drawer" class="fixed top-0 right-0 h-full w-72 bg-black border-l border-zinc-900 z-40 p-8 flex flex-col space-y-6 pt-24 shadow-2xl transform translate-x-full transition-transform duration-300 font-medium text-lg">
-            <a href="#home" class="drawer-link hover:text-corporateBlue transition-colors border-b border-zinc-900 pb-3">Home</a>
+            <a href="#home-mobile" class="drawer-link hover:text-corporateBlue transition-colors border-b border-zinc-900 pb-3">Home</a>
             <a href="#about" class="drawer-link hover:text-corporateBlue transition-colors border-b border-zinc-900 pb-3">About</a>
             <a href="#services" class="drawer-link hover:text-corporateBlue transition-colors border-b border-zinc-900 pb-3">Services</a>
             <a href="#fleet" class="drawer-link hover:text-corporateBlue transition-colors border-b border-zinc-900 pb-3">Fleet</a>
             <a href="#whychoose" class="drawer-link hover:text-corporateBlue transition-colors border-b border-zinc-900 pb-3">Why Choose Us</a>
-            <a href="#process" class="drawer-link hover:text-corporateBlue transition-colors border-b border-zinc-900 pb-3">Process</a>
             <a href="#contact" class="drawer-link bg-corporateBlue text-white text-center py-3 rounded-lg font-semibold">Get Quote</a>
         </div>
     </nav>
@@ -155,20 +161,20 @@
             </video>
         </div>
         
-        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10"></div>
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm z-10"></div>
 
-        <div class="relative z-20 max-w-7xl mx-auto px-6 lg:px-8 w-full text-white pt-24">
-            <div class="max-w-3xl">
-                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-sm font-semibold mb-6 backdrop-blur-sm reveal">
+        <div class="relative z-20 max-w-7xl mx-auto px-6 lg:px-8 w-full text-white pt-24 flex flex-col items-center text-center">
+            <div class="max-w-3xl flex flex-col items-center">
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-sm font-semibold mb-6 backdrop-blur-sm reveal mx-auto">
                     <i class="fa-solid fa-shield-halved"></i> ISO Compliant Fleet Ecosystem
                 </span>
-                <h1 class="text-4xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight reveal delay-100">
+                <h1 class="text-4xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight reveal delay-100 text-center w-full">
                     Corporate Transportation Solutions Since 2012
                 </h1>
-                <p class="text-lg lg:text-xl text-slate-300 mb-8 font-light leading-relaxed reveal delay-200">
+                <p class="text-lg lg:text-xl text-slate-300 mb-8 font-light leading-relaxed reveal delay-200 text-center">
                     Premium Employee Transportation & Fleet Management services trusted across Mumbai & Pune. Optimizing workforce mobility with pristine safety metrics.
                 </p>
-                <div class="flex flex-wrap gap-4 reveal delay-300">
+                <div class="flex flex-wrap gap-4 reveal delay-300 justify-center">
                     <a href="#contact" class="px-6 py-3 bg-corporateBlue hover:bg-corporateHover text-white font-semibold rounded-lg transition-all flex items-center gap-2">
                         Get Quote <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
@@ -178,20 +184,20 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-4 gap-4 mt-16 max-w-4xl reveal delay-400">
-                <div class="bg-black/50 backdrop-blur-md border border-white/10 rounded-lg p-4 shadow-xl">
+            <div class="grid grid-cols-4 gap-4 mt-16 max-w-4xl reveal delay-400 w-full">
+                <div class="bg-black/50 backdrop-blur-md border border-white/10 rounded-lg p-4 shadow-xl text-center">
                     <div class="text-2xl font-bold text-blue-400 mb-1">14+</div>
                     <div class="text-[10px] uppercase tracking-wider text-slate-300 font-medium">Years Experience</div>
                 </div>
-                <div class="bg-black/50 backdrop-blur-md border border-white/10 rounded-lg p-4 shadow-xl">
+                <div class="bg-black/50 backdrop-blur-md border border-white/10 rounded-lg p-4 shadow-xl text-center">
                     <div class="text-2xl font-bold text-blue-400 mb-1">95+</div>
                     <div class="text-[10px] uppercase tracking-wider text-slate-300 font-medium">Fleet Vehicles</div>
                 </div>
-                <div class="bg-black/50 backdrop-blur-md border border-white/10 rounded-lg p-4 shadow-xl">
+                <div class="bg-black/50 backdrop-blur-md border border-white/10 rounded-lg p-4 shadow-xl text-center">
                     <div class="text-2xl font-bold text-blue-400 mb-1">24/7</div>
                     <div class="text-[10px] uppercase tracking-wider text-slate-300 font-medium">Operations Center</div>
                 </div>
-                <div class="bg-black/50 backdrop-blur-md border border-white/10 rounded-lg p-4 shadow-xl">
+                <div class="bg-black/50 backdrop-blur-md border border-white/10 rounded-lg p-4 shadow-xl text-center">
                     <div class="text-2xl font-bold text-blue-400 mb-1">99%</div>
                     <div class="text-[10px] uppercase tracking-wider text-slate-300 font-medium">Punctuality Rate</div>
                 </div>
@@ -200,8 +206,8 @@
     </section>
 
     <section id="home-mobile" class="md:hidden flex flex-col w-full bg-white pt-20">
-        <div class="px-6 pb-4 pt-2 text-left">
-            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-corporateBlue text-xs font-semibold">
+        <div class="px-6 pb-4 pt-2 flex justify-center w-full">
+            <span class="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-corporateBlue text-xs font-semibold mx-auto">
                 <i class="fa-solid fa-shield-halved"></i> ISO Compliant Fleet Ecosystem
             </span>
         </div>
@@ -210,18 +216,18 @@
             <video autoplay muted playsinline loop class="w-full h-full object-cover">
                 <source src="./image/bannervideo.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-black/40 backdrop-blur-sm flex flex-col justify-center px-6">
-                <h1 class="text-2xl font-extrabold text-white leading-snug drop-shadow-lg">
+            <div class="absolute inset-0 bg-black/70 backdrop-blur-sm flex flex-col items-center justify-center px-6 text-center">
+                <h1 class="text-2xl font-extrabold text-white leading-snug drop-shadow-lg text-center w-full">
                     Corporate Transportation Solutions Since 2012
                 </h1>
             </div>
         </div>
 
-        <div class="px-6 py-6 bg-white">
+        <div class="px-6 py-6 bg-white flex flex-col items-center text-center w-full">
             <p class="text-sm text-slate-600 mb-6 leading-relaxed">
                 Premium Employee Transportation & Fleet Management services trusted across Mumbai & Pune. Optimizing workforce mobility with pristine safety metrics.
             </p>
-            <div class="flex flex-col gap-3">
+            <div class="flex flex-col gap-3 w-full">
                 <a href="#contact" class="w-full text-center py-3 bg-corporateBlue text-white font-semibold rounded-lg shadow-md flex items-center justify-center gap-2 text-sm">
                     Get Quote <i class="fa-solid fa-arrow-right text-xs"></i>
                 </a>
@@ -261,7 +267,7 @@
                     </div>
                 </div>
                 <div class="reveal delay-100">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" alt="Corporate Logistics" class="rounded-2xl w-full h-[350px] object-cover border border-slate-200 shadow-lg">
+                    <img src="./image/corporate.webp" alt="Corporate Logistics" class="rounded-2xl w-full h-[350px] object-cover border border-slate-200 shadow-lg">
                 </div>
             </div>
         </div>
@@ -452,52 +458,11 @@
         </div>
     </section>
 
-    <section id="process" class="py-16 bg-white border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-                <span class="text-corporateBlue font-extrabold uppercase tracking-widest text-xs block mb-2">How We Work</span>
-                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight mb-4 heading-gradient pb-1 whitespace-nowrap overflow-hidden">
-                    Our Streamlined Workflow
-                </h2>
-                <div class="w-16 h-1 bg-corporateBlue mx-auto rounded-full"></div>
-            </div>
-
-            <div class="relative flex flex-col md:flex-row items-center justify-between w-full reveal gap-6 md:gap-0">
-                <div class="absolute w-1 md:w-full h-full md:h-1 bg-blue-100 left-1/2 md:left-0 top-0 md:top-1/2 -translate-x-1/2 md:translate-x-0 md:-translate-y-1/2 z-0"></div>
-
-                <div class="z-10 relative bg-white p-3 border-2 border-slate-200 rounded-xl w-40 text-center hover:border-corporateBlue transition-colors shadow-sm">
-                    <div class="w-8 h-8 rounded-full bg-corporateBlue text-white font-bold flex items-center justify-center mx-auto mb-2 text-xs">1</div>
-                    <h4 class="font-bold text-xs text-slate-900">Vehicle Allocation</h4>
-                </div>
-                <div class="z-10 relative bg-white p-3 border-2 border-slate-200 rounded-xl w-40 text-center hover:border-corporateBlue transition-colors shadow-sm">
-                    <div class="w-8 h-8 rounded-full bg-corporateBlue text-white font-bold flex items-center justify-center mx-auto mb-2 text-xs">2</div>
-                    <h4 class="font-bold text-xs text-slate-900">Route Planning</h4>
-                </div>
-                <div class="z-10 relative bg-white p-3 border-2 border-slate-200 rounded-xl w-40 text-center hover:border-corporateBlue transition-colors shadow-sm">
-                    <div class="w-8 h-8 rounded-full bg-corporateBlue text-white font-bold flex items-center justify-center mx-auto mb-2 text-xs">3</div>
-                    <h4 class="font-bold text-xs text-slate-900">Driver Sync</h4>
-                </div>
-                <div class="z-10 relative bg-white p-3 border-2 border-slate-200 rounded-xl w-40 text-center hover:border-corporateBlue transition-colors shadow-sm">
-                    <div class="w-8 h-8 rounded-full bg-corporateBlue text-white font-bold flex items-center justify-center mx-auto mb-2 text-xs">4</div>
-                    <h4 class="font-bold text-xs text-slate-900">Pickup Monitor</h4>
-                </div>
-                <div class="z-10 relative bg-white p-3 border-2 border-slate-200 rounded-xl w-40 text-center hover:border-corporateBlue transition-colors shadow-sm">
-                    <div class="w-8 h-8 rounded-full bg-corporateBlue text-white font-bold flex items-center justify-center mx-auto mb-2 text-xs">5</div>
-                    <h4 class="font-bold text-xs text-slate-900">Live Tracking</h4>
-                </div>
-                <div class="z-10 relative bg-white p-3 border-2 border-slate-200 rounded-xl w-40 text-center hover:border-corporateBlue transition-colors shadow-sm">
-                    <div class="w-8 h-8 rounded-full bg-corporateBlue text-white font-bold flex items-center justify-center mx-auto mb-2 text-xs">6</div>
-                    <h4 class="font-bold text-xs text-slate-900">MIS Reporting</h4>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="clients" class="pt-16 bg-white">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 mb-10">
             <div class="text-center reveal">
-                <span class="text-corporateBlue font-extrabold uppercase tracking-widest text-xs block mb-2">Trusted By Industry Leaders</span>
                 <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight heading-gradient whitespace-nowrap overflow-hidden pb-1">Our Corporate Clients</h2>
+                <div class="w-16 h-1 bg-corporateBlue mx-auto rounded-full mt-2"></div>
             </div>
         </div>
 
@@ -507,13 +472,13 @@
             <div class="marquee-content animate-marquee-loop space-x-12">
                 <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client1.svg" alt="TCS Logo" class="h-10 w-auto object-contain"></div>
                 <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client2.svg" alt="IKEA Logo" class="h-10 w-auto object-contain"></div>
-                <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client3.webp" alt="Godrej Logo" class="h-10 w-auto object-contain"></div>
+                <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client3.svg" alt="Godrej Logo" class="h-10 w-auto object-contain"></div>
                 <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client4.svg" alt="Trafigura Logo" class="h-10 w-auto object-contain"></div>
                 <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client5.svg" alt="TIAA Logo" class="h-10 w-auto object-contain"></div>
                 
                 <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client1.svg" alt="TCS Logo" class="h-10 w-auto object-contain"></div>
                 <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client2.svg" alt="IKEA Logo" class="h-10 w-auto object-contain"></div>
-                <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client3.webp" alt="Godrej Logo" class="h-10 w-auto object-contain"></div>
+                <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client3.svg" alt="Godrej Logo" class="h-10 w-auto object-contain"></div>
                 <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client4.svg" alt="Trafigura Logo" class="h-10 w-auto object-contain"></div>
                 <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client5.svg" alt="TIAA Logo" class="h-10 w-auto object-contain"></div>
             </div>
@@ -553,47 +518,63 @@
                 <div class="w-16 h-1 bg-corporateBlue mx-auto rounded-full"></div>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-8 items-start">
+            <div class="grid lg:grid-cols-2 gap-8 items-start relative">
+                
+                <div id="success-popup" class="absolute top-0 left-0 w-full h-full flex items-center justify-center z-50">
+                    <div class="bg-white border border-green-200 shadow-2xl rounded-2xl p-6 flex flex-col items-center justify-center w-3/4 max-w-sm relative">
+                        <button onclick="closePopup()" class="absolute top-3 right-3 text-slate-400 hover:text-slate-800 focus:outline-none">
+                            <i class="fa-solid fa-xmark text-lg"></i>
+                        </button>
+                        <div class="w-14 h-14 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mb-4 shadow-sm">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-1 text-center">Submitted Successfully</h3>
+                        <p class="text-xs text-slate-500 text-center">Our team will contact you shortly.</p>
+                    </div>
+                </div>
+
                 <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm reveal">
-                    <form class="space-y-4" onsubmit="event.preventDefault();">
+                    <form id="contact-form" onsubmit="submitForm(event)" class="space-y-4">
+                        <input type="hidden" name="access_key" value="e50ae66c-b8da-40c1-a259-3e0e5e94ad56">
+                        
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-600 mb-1">Company Name</label>
-                                <input type="text" required class="w-full bg-slate-50 border border-slate-200 rounded-md px-3 py-2 text-sm focus:border-corporateBlue focus:ring-1 outline-none transition-all" placeholder="e.g. Acme Corp">
+                                <input type="text" name="Company Name" required class="w-full bg-slate-50 border border-slate-200 rounded-md px-3 py-2 text-sm focus:border-corporateBlue focus:ring-1 outline-none transition-all" placeholder="e.g. Acme Corp">
                             </div>
                             <div>
                                 <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-600 mb-1">Contact Person</label>
-                                <input type="text" required class="w-full bg-slate-50 border border-slate-200 rounded-md px-3 py-2 text-sm focus:border-corporateBlue focus:ring-1 outline-none transition-all" placeholder="e.g. John Doe">
+                                <input type="text" name="Contact Person" required class="w-full bg-slate-50 border border-slate-200 rounded-md px-3 py-2 text-sm focus:border-corporateBlue focus:ring-1 outline-none transition-all" placeholder="e.g. John Doe">
                             </div>
                         </div>
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-600 mb-1">Email</label>
-                                <input type="email" required class="w-full bg-slate-50 border border-slate-200 rounded-md px-3 py-2 text-sm focus:border-corporateBlue focus:ring-1 outline-none transition-all" placeholder="e.g. john@company.com">
+                                <input type="email" name="Email" required class="w-full bg-slate-50 border border-slate-200 rounded-md px-3 py-2 text-sm focus:border-corporateBlue focus:ring-1 outline-none transition-all" placeholder="e.g. john@company.com">
                             </div>
                             <div>
                                 <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-600 mb-1">Phone</label>
-                                <input type="tel" required class="w-full bg-slate-50 border border-slate-200 rounded-md px-3 py-2 text-sm focus:border-corporateBlue focus:ring-1 outline-none transition-all" placeholder="e.g. 7387496086">
+                                <input type="tel" name="Phone" required class="w-full bg-slate-50 border border-slate-200 rounded-md px-3 py-2 text-sm focus:border-corporateBlue focus:ring-1 outline-none transition-all" placeholder="e.g. 7387496086">
                             </div>
                         </div>
                         <div>
                             <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-600 mb-1">Requirement Details</label>
-                            <textarea rows="3" required class="w-full bg-slate-50 border border-slate-200 rounded-md px-3 py-2 text-sm focus:border-corporateBlue focus:ring-1 outline-none transition-all" placeholder="e.g. Tell us about your fleet needs..."></textarea>
+                            <textarea rows="3" name="Message" required class="w-full bg-slate-50 border border-slate-200 rounded-md px-3 py-2 text-sm focus:border-corporateBlue focus:ring-1 outline-none transition-all" placeholder="e.g. Tell us about your fleet needs..."></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-corporateBlue text-white font-bold py-3 rounded-md transition-all text-sm shadow-md">
+                        <button type="submit" id="submit-btn" class="w-full bg-corporateBlue hover:bg-corporateHover text-white font-bold py-3 rounded-md transition-all text-sm shadow-md">
                             Submit Request
                         </button>
                     </form>
                 </div>
 
                 <div class="flex flex-col space-y-4 reveal">
-                    <div class="border border-slate-200 p-5 rounded-xl bg-white shadow-sm flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-lg bg-blue-50 text-corporateBlue flex items-center justify-center shrink-0 text-lg">
+                    <div class="interactive-card p-5 rounded-xl flex items-center gap-4">
+                        <div class="animated-icon w-10 h-10 rounded-lg bg-blue-50 text-corporateBlue flex items-center justify-center shrink-0 text-lg">
                             <i class="fa-solid fa-phone"></i>
                         </div>
                         <div class="overflow-hidden">
-                            <h4 class="font-extrabold text-slate-900 mb-1 text-[11px] uppercase tracking-wider">HELPLINE NUMBER</h4>
-                            <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 text-xs font-semibold text-slate-600 whitespace-nowrap">
+                            <h4 class="font-bold text-slate-900 mb-1 text-sm tracking-wide">Helpline Number</h4>
+                            <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 text-xs font-medium text-slate-600 whitespace-nowrap">
                                 <a href="tel:7387496086" class="hover:text-corporateBlue">+91 7387496086</a>
                                 <a href="tel:7709355903" class="hover:text-corporateBlue hidden sm:block">|</a>
                                 <a href="tel:7709355903" class="hover:text-corporateBlue">+91 7709355903</a>
@@ -601,24 +582,24 @@
                         </div>
                     </div>
 
-                    <div class="border border-slate-200 p-5 rounded-xl bg-white shadow-sm flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-lg bg-blue-50 text-corporateBlue flex items-center justify-center shrink-0 text-lg">
+                    <div class="interactive-card p-5 rounded-xl flex items-center gap-4">
+                        <div class="animated-icon w-10 h-10 rounded-lg bg-blue-50 text-corporateBlue flex items-center justify-center shrink-0 text-lg">
                             <i class="fa-solid fa-envelope"></i>
                         </div>
                         <div class="overflow-hidden">
-                            <h4 class="font-extrabold text-slate-900 mb-1 text-[11px] uppercase tracking-wider">EMAIL</h4>
-                            <a href="mailto:mumbaiops@classic-travels.com" class="text-xs font-semibold text-corporateBlue hover:underline whitespace-nowrap block truncate">
+                            <h4 class="font-bold text-slate-900 mb-1 text-sm tracking-wide">Email</h4>
+                            <a href="mailto:mumbaiops@classic-travels.com" class="text-xs font-medium text-corporateBlue hover:underline whitespace-nowrap block truncate">
                                 mumbaiops@classic-travels.com
                             </a>
                         </div>
                     </div>
 
-                    <div class="border border-slate-200 p-5 rounded-xl bg-white shadow-sm flex items-center gap-4">
-                        <div class="w-10 h-10 rounded-lg bg-blue-50 text-corporateBlue flex items-center justify-center shrink-0 text-lg">
+                    <div class="interactive-card p-5 rounded-xl flex items-center gap-4">
+                        <div class="animated-icon w-10 h-10 rounded-lg bg-blue-50 text-corporateBlue flex items-center justify-center shrink-0 text-lg">
                             <i class="fa-solid fa-location-dot"></i>
                         </div>
                         <div class="overflow-hidden">
-                            <h4 class="font-extrabold text-slate-900 mb-1 text-[11px] uppercase tracking-wider">HEAD OFFICE (HO)</h4>
+                            <h4 class="font-bold text-slate-900 mb-1 text-sm tracking-wide">Head Office (HO)</h4>
                             <p class="text-xs text-slate-500 font-medium whitespace-nowrap truncate">
                                 Shop 5, Om Siddhivinayak CHS, Sec 9, Airoli, Navi Mumbai 400708
                             </p>
@@ -649,8 +630,8 @@
                 </div>
                 <div>
                     <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-3">Service City</h4>
-                    <p class="text-xs text-zinc-400 mb-1 font-medium"><strong class="text-zinc-200">Mumbai</strong></p>
-                    <p class="text-xs text-zinc-400 font-medium"><strong class="text-zinc-200">Pune</strong></p>
+                    <p class="text-xs text-zinc-400 mb-1">Mumbai</p>
+                    <p class="text-xs text-zinc-400">Pune</p>
                 </div>
             </div>
 
@@ -669,7 +650,7 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/917387496086?text=Hi%20Classic%20Travels%20Solutions,%20I%20am%20interested%20in%20obtaining%20a%20corporate%20fleet%20transportation%20quote." target="_blank" class="fixed bottom-5 right-5 z-50 w-12 h-12 bg-green-500 text-white flex items-center justify-center rounded-full shadow-lg text-2xl pulse-wa">
+    <a href="https://wa.me/917387496086?text=Hi%20Classic%20Travels%20Solutions,%20I%20am%20interested%20in%20obtaining%20a%20corporate%20fleet%20transportation%20quote." target="_blank" class="fixed bottom-5 right-5 z-50 w-12 h-12 bg-green-500 text-white flex items-center justify-center rounded-full shadow-lg text-2xl pulse-wa hover:scale-110 transition-transform">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
@@ -732,6 +713,54 @@
                 if (entries[0].isIntersecting && !counterTriggered) { startCounting(); counterTriggered = true; }
             }, { threshold: 0.8 }).observe(statsContainer);
         }
+
+        // Web3Forms Submission Logic
+        let popupTimeout;
+        const popup = document.getElementById('success-popup');
+        
+        function closePopup() {
+            popup.classList.remove('show');
+            clearTimeout(popupTimeout);
+        }
+
+        function submitForm(e) {
+            e.preventDefault();
+            const form = e.target;
+            const btn = document.getElementById('submit-btn');
+            
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
+            btn.disabled = true;
+
+            const formData = new FormData(form);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(async (response) => {
+                if (response.status === 200) {
+                    form.reset();
+                    popup.classList.add('show');
+                    
+                    popupTimeout = setTimeout(() => {
+                        closePopup();
+                    }, 3000);
+                } else {
+                    alert("Something went wrong! Please try again.");
+                }
+            })
+            .catch(error => {
+                alert("Error submitting form. Please check your connection.");
+            })
+            .finally(() => {
+                btn.innerHTML = 'Submit Request';
+                btn.disabled = false;
+            });
+        }
     </script>
 </body>
 </html>
+"""
+
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html_code)
