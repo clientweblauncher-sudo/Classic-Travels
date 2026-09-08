@@ -169,17 +169,16 @@
     </nav>
 
     <!-- Unified Responsive Hero Section -->
-    <section id="home" class="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-black">
-        <div class="absolute inset-0 w-full h-full z-0">
-            <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-80">
-                <source src="./image/bannervideo.mp4" type="video/mp4">
-            </video>
+    <section id="home" class="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-black pt-16">
+        <!-- Replaced video with image, using object-contain to prevent cropping -->
+        <div class="absolute inset-0 w-full h-full z-0 flex items-center justify-center bg-[#050A15]">
+            <img src="./image/hero.webp" alt="Corporate Fleet Background" class="w-full h-full object-contain opacity-70">
         </div>
         
         <!-- Premium Gradient Overlay -->
         <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90 z-10"></div>
 
-        <div class="relative z-20 max-w-7xl mx-auto px-6 lg:px-8 w-full text-white pt-24 pb-12 flex flex-col items-center text-center">
+        <div class="relative z-20 max-w-7xl mx-auto px-6 lg:px-8 w-full text-white pt-20 pb-12 flex flex-col items-center text-center">
             <div class="max-w-4xl flex flex-col items-center">
                 <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs md:text-sm font-semibold mb-6 backdrop-blur-md reveal mx-auto">
                     <i class="fa-solid fa-shield-halved"></i> ISO Compliant Fleet Ecosystem
@@ -255,9 +254,10 @@
                         </div>
                     </div>
                 </div>
+                <!-- Replaced object-cover with object-contain to prevent cropping -->
                 <div class="reveal delay-100 relative">
                     <div class="absolute inset-0 bg-corporateBlue/10 translate-x-4 translate-y-4 rounded-2xl z-0"></div>
-                    <img src="./image/corporate.webp" alt="Corporate Logistics" class="rounded-2xl w-full h-[400px] object-cover relative z-10 border border-slate-200 shadow-xl">
+                    <img src="./image/corporate.webp" alt="Corporate Logistics" class="rounded-2xl w-full h-auto object-contain relative z-10 border border-slate-200 shadow-xl bg-white p-2">
                 </div>
             </div>
         </div>
@@ -459,7 +459,7 @@
         </div>
     </section>
 
-    <!-- Clients Marquee (REMOVED GRAYSCALE - LOGOS IN ORIGINAL COLOURS) -->
+    <!-- Clients Marquee (Logos in original colors, no hover effects) -->
     <section id="clients" class="pt-16 bg-white">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 mb-12">
             <div class="text-center reveal">
@@ -629,7 +629,8 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12 border-b border-zinc-800 pb-12">
                 <div class="md:col-span-5">
-                    <img src="./image/logo.png" alt="Classic Travels Logo" class="h-12 w-auto object-contain mb-6 brightness-0 invert opacity-90">
+                    <!-- Replaced logo image with "About us." text -->
+                    <h3 class="text-white font-extrabold text-2xl mb-4 tracking-tight">About us.</h3>
                     <p class="text-sm text-zinc-400 leading-relaxed max-w-sm">
                         Premium corporate employee transportation and fleet management across Maharashtra. ISO compliant and technology driven solutions for the modern enterprise.
                     </p>
@@ -645,10 +646,11 @@
                 </div>
                 <div class="md:col-span-3">
                     <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-5">Service Hubs</h4>
+                    <!-- Updated Service Hubs Order -->
                     <ul class="space-y-3 text-sm font-medium text-zinc-400">
                         <li class="flex items-center gap-2"><i class="fa-solid fa-map-pin text-zinc-600 text-xs"></i> Mumbai</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-map-pin text-zinc-600 text-xs"></i> Pune</li>
                         <li class="flex items-center gap-2"><i class="fa-solid fa-map-pin text-zinc-600 text-xs"></i> Navi Mumbai</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-map-pin text-zinc-600 text-xs"></i> Pune</li>
                     </ul>
                 </div>
             </div>
@@ -664,7 +666,7 @@
         </div>
     </footer>
 
-    <!-- Updated WhatsApp Link with New Primary Number -->
+    <!-- Updated WhatsApp Link -->
     <a href="https://wa.me/919920934693?text=Hi%20Classic%20Travels%20Solutions,%20I%20am%20interested%20in%20obtaining%20a%20corporate%20fleet%20transportation%20quote." target="_blank" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 text-white flex items-center justify-center rounded-full shadow-2xl text-3xl pulse-wa hover:scale-110 transition-transform">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
