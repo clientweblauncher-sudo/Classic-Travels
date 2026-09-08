@@ -6,6 +6,9 @@
     <meta name="description" content="Premium corporate employee transportation and fleet management solutions in Mumbai and Pune. ISO-compliant, 24/7 operations, 99% punctuality.">
     <title>Classic Travels Solutions India Pvt Ltd | Corporate Employee Transportation</title>
     
+    <!-- Favicon Mapped -->
+    <link rel="icon" type="image/png" href="./image/favicon.png">
+    
     <!-- Fonts: Manrope for clean, modern body; Playfair Display for subtle luxury accents -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -84,7 +87,7 @@
 
         /* Infinite Marquee */
         .marquee-container {
-            display: flex; width: 200%; animation: marquee 30s linear infinite;
+            display: flex; width: 200%; animation: marquee 40s linear infinite;
         }
         .marquee-container:hover { animation-play-state: paused; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -133,9 +136,9 @@
     <!-- Navigation -->
     <header id="navbar" class="fixed top-0 w-full z-50 transition-all py-6 text-brand-white bg-transparent">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
-            <!-- Logo -->
+            <!-- Logo Mapped -->
             <a href="#" class="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-brand-accent rounded" aria-label="Home">
-                <span class="font-serif text-xl tracking-wide uppercase font-semibold group-hover:text-brand-accent transition-colors">Classic Travels</span>
+                <img src="./image/logo.png" alt="Classic Travels Logo" class="h-8 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
             </a>
 
             <!-- Desktop Links -->
@@ -188,9 +191,9 @@
 
     <!-- Hero Section -->
     <section class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-        <!-- Video Background -->
-        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover -z-20" poster="assets/corporate.webp">
-            <source src="assets/bannervideo.mp4" type="video/mp4">
+        <!-- Video Background Mapped -->
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover -z-20">
+            <source src="./image/bannervideo.mp4" type="video/mp4">
         </video>
         <!-- Overlay -->
         <div class="absolute inset-0 bg-brand-black/70 -z-10"></div>
@@ -275,7 +278,8 @@
                 <div class="relative">
                     <div class="absolute inset-0 bg-brand-charcoal rounded-sm translate-x-4 translate-y-4 lg:translate-x-6 lg:translate-y-6 -z-10"></div>
                     <div class="img-reveal rounded-sm shadow-xl aspect-[4/3] bg-gray-200">
-                        <img src="assets/corporate.webp" alt="Corporate Fleet Operations" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=1200';">
+                        <!-- Corporate Image Mapped -->
+                        <img src="./image/corporate.webp" alt="Corporate Fleet Operations" class="w-full h-full object-cover">
                     </div>
                     <!-- Small badge -->
                     <div class="absolute -bottom-6 -left-6 bg-brand-white p-6 shadow-[0_8px_30px_rgb(0,0,0,0.1)] rounded-sm flex items-center gap-4">
@@ -399,7 +403,6 @@
                 <div class="group border border-white/10 p-1 flex flex-col">
                     <div class="bg-white/5 h-48 sm:h-64 overflow-hidden relative">
                         <div class="absolute inset-0 bg-brand-black/20 group-hover:bg-transparent transition-colors z-10"></div>
-                        <!-- Generic fallback for visual since exact images aren't provided -->
                         <div class="w-full h-full flex items-center justify-center text-white/20">
                            <i class="ph ph-van text-6xl"></i>
                         </div>
@@ -516,25 +519,27 @@
         </div>
     </section>
 
-    <!-- Client Marquee -->
+    <!-- Client Marquee (Using Local Mapped SVGs) -->
     <section class="py-16 bg-brand-white overflow-hidden mask-edges border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-6 text-center mb-8">
             <span class="text-xs uppercase tracking-widest text-gray-400 font-semibold">Trusted by Leading Organizations</span>
         </div>
-        <div class="marquee-container gap-16 md:gap-32 px-8 flex items-center">
-            <!-- Repeating blocks to create infinite effect. Placeholder generic icons represent genuine logos -->
-            <!-- Set 1 -->
-            <div class="flex items-center gap-2 text-2xl font-bold text-gray-300 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:text-brand-charcoal transition-all duration-300 cursor-default"><i class="ph-fill ph-buildings"></i> Corporate Partner</div>
-            <div class="flex items-center gap-2 text-2xl font-bold text-gray-300 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:text-brand-charcoal transition-all duration-300 cursor-default"><i class="ph-fill ph-bank"></i> Financial Tech</div>
-            <div class="flex items-center gap-2 text-2xl font-bold text-gray-300 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:text-brand-charcoal transition-all duration-300 cursor-default"><i class="ph-fill ph-factory"></i> Manufacturing Ltd</div>
-            <div class="flex items-center gap-2 text-2xl font-bold text-gray-300 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:text-brand-charcoal transition-all duration-300 cursor-default"><i class="ph-fill ph-briefcase"></i> Consulting Group</div>
-            <div class="flex items-center gap-2 text-2xl font-bold text-gray-300 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:text-brand-charcoal transition-all duration-300 cursor-default"><i class="ph-fill ph-hospital"></i> Healthcare Inc</div>
-            <!-- Set 2 (Duplicate for continuous scroll) -->
-             <div class="flex items-center gap-2 text-2xl font-bold text-gray-300 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:text-brand-charcoal transition-all duration-300 cursor-default"><i class="ph-fill ph-buildings"></i> Corporate Partner</div>
-            <div class="flex items-center gap-2 text-2xl font-bold text-gray-300 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:text-brand-charcoal transition-all duration-300 cursor-default"><i class="ph-fill ph-bank"></i> Financial Tech</div>
-            <div class="flex items-center gap-2 text-2xl font-bold text-gray-300 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:text-brand-charcoal transition-all duration-300 cursor-default"><i class="ph-fill ph-factory"></i> Manufacturing Ltd</div>
-            <div class="flex items-center gap-2 text-2xl font-bold text-gray-300 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:text-brand-charcoal transition-all duration-300 cursor-default"><i class="ph-fill ph-briefcase"></i> Consulting Group</div>
-            <div class="flex items-center gap-2 text-2xl font-bold text-gray-300 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:text-brand-charcoal transition-all duration-300 cursor-default"><i class="ph-fill ph-hospital"></i> Healthcare Inc</div>
+        <div class="marquee-container relative w-full pb-8">
+            <div class="marquee-content space-x-12 md:space-x-24">
+                <!-- Original Set -->
+                <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client1.svg" alt="Corporate Partner" class="h-10 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"></div>
+                <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client2.svg" alt="Corporate Partner" class="h-10 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"></div>
+                <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client3.svg" alt="Corporate Partner" class="h-10 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"></div>
+                <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client4.svg" alt="Corporate Partner" class="h-10 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"></div>
+                <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client5.svg" alt="Corporate Partner" class="h-10 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"></div>
+                
+                <!-- Duplicate Set for Seamless Loop -->
+                <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client1.svg" alt="Corporate Partner" class="h-10 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"></div>
+                <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client2.svg" alt="Corporate Partner" class="h-10 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"></div>
+                <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client3.svg" alt="Corporate Partner" class="h-10 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"></div>
+                <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client4.svg" alt="Corporate Partner" class="h-10 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"></div>
+                <div class="w-32 md:w-40 shrink-0 flex justify-center"><img src="./image/client5.svg" alt="Corporate Partner" class="h-10 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"></div>
+            </div>
         </div>
     </section>
 
@@ -650,8 +655,8 @@
                     </div>
 
                     <form id="quoteForm" action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
-                        <!-- KEEP THE GENUINE ACCESS KEY HERE if migrating to live -->
-                        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE">
+                        <!-- Genuine Access Key Integration -->
+                        <input type="hidden" name="access_key" value="e50ae66c-b8da-40c1-a259-3e0e5e94ad56">
                         
                         <!-- Anti-Spam -->
                         <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
@@ -713,7 +718,7 @@
                 
                 <!-- Brand Col -->
                 <div>
-                    <span class="font-serif text-xl tracking-wide uppercase font-semibold block mb-6">Classic Travels</span>
+                    <img src="./image/logo.png" alt="Classic Travels Logo" class="h-8 w-auto object-contain mb-6 grayscale brightness-200">
                     <p class="text-white/60 text-sm leading-relaxed mb-6 pr-4">
                         Premium employee transportation and enterprise fleet management solutions operating across Mumbai and Pune.
                     </p>
